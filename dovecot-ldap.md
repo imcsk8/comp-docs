@@ -32,13 +32,37 @@ auth_mechanisms = plain login
 
 *In /etc/dovecot/conf.d/auth-ldap.conf.ext*
 ```
- args = /etc/dovecot/conf.d/dovecot-ldap.conf.ext
+ passdb {
+  driver = ldap
+
+  # Path for LDAP configuration file, see example-config/dovecot-ldap.conf.ext
+  args = /etc/dovecot/conf.d/dovecot-ldap.conf.ext
+}
+
+userdb {
+  driver = ldap
+  args = /etc/dovecot/conf.d/dovecot-ldap.conf.ext
+
+  # Default fields can be used to specify defaults that LDAP may override
+  #default_fields = home=/home/virtual/%u
+}
+
+ 
 ```
 
 *In /etc/dovecot/conf.d/dovecot-ldap.conf.ext*
 
 ```
+hosts = localhost
+auth_bind = yes # The LDAP server handles the authentication
+base = dc=aumenta,dc=com,dc=mx
+scope = subtree
+user_filter = (&(objectClass=CourierMailAccount)(uid=%u)) 
+#or
+#user_filter = (&(objectClass=PosixAccount)(uid=%u))
+blocking = yes
 ```
+
 
 
 
