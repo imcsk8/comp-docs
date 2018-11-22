@@ -12,7 +12,7 @@ Backup the config and user databases:
 
 
 
-## After the upgrade
+## Upgrade
 
 ### Using new configuration from fresh install
 
@@ -71,7 +71,7 @@ SASL SSF: 0
 adding new entry "cn=inetorgperson,cn=schema,cn=config"
 ```
 
-**Configure directory manager account**
+#### Configure directory manager account
 
 **Generate new directory manager password**
 ```
@@ -81,7 +81,7 @@ Re-enter new password:
 {SSHA}newhashedpassword
 ```
 
-**Create directory manager account and base domain**
+**Create directory manager account**
 ```
 # vi chdomain.ldif
 # replace to your own domain name for "dc=***,dc=***" section
@@ -118,6 +118,10 @@ olcAccess: {1}to dn.base="" by * read
 olcAccess: {2}to * by dn="cn=Manager,dc=srv,dc=world" write by * read
 
 ```
+
+**Create base domain and organizational units**
+
+Add here the organizational units that you're going to use
 
 ```
 # vi basedomain.ldif 
@@ -175,9 +179,80 @@ adding new entry "ou=People,dc=srv,dc=world"
 
 adding new entry "ou=Group,dc=srv,dc=world"
 
+```
+
+#### Configure TLS
+
+**Create SSL Certificates**
+
+*This will create a new self signed certificate*
+
+```
+# cd /etc/pki/tls/certs 
+# openssl req  -nodes -new -x509  -keyout ldap-server.key -out ldap-server.cert
+Generating a RSA private key
+..................................+++++
+.........+++++
+writing new private key to 'ldap-server.key'
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [XX]:MX
+State or Province Name (full name) []:Chihuahua
+Locality Name (eg, city) [Default City]:Chihuahua
+Organization Name (eg, company) [Default Company Ltd]:SotolitoLabs
+Organizational Unit Name (eg, section) []:sotolitolabs
+Common Name (eg, your name or your server's hostname) []:SotolitoLabs
+Email Address []:info@sotolitolabs.com
 
 ```
 
+**Configure OpenLDAP for TLS**
+
+Copy Self signed certificate and key to OpenLDAP certificate location
+```
+# mkdir /etc/openldap/certs/ 
+# cp /etc/pki/tls/certs/ldap-server.* /etc/openldap/certs/.
+# chown -R ldap:ldap /etc/openldap/certs
+```
+
+**Create TLS directory entry**
+
+```
+# vi tls.ldif
+# create new
+
+dn: cn=config
+changetype: modify
+replace: olcTLSCertificateFile
+olcTLSCertificateFile: /etc/openldap/certs/ldap-server.crt
+-
+replace: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/openldap/certs/ldap-server.key
+
+# ldapmodify -Y EXTERNAL -H ldapi:/// -f tls.ldif 
+SASL/EXTERNAL authentication started
+SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+SASL SSF: 0
+modifying entry "cn=config"
+
+```
+
+**Restart OpenLDAP**
+
+```
+# systemctl restart slapd 
+```
+
+**Restore entries**
+```
+# ldapadd -vx -D 'dc=srv,dc=world' -w adminpassword -f BACKUP.ldif
+```
 
 
 ### Using same configuration
