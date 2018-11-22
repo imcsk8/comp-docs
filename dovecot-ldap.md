@@ -14,7 +14,7 @@ This document details how to configure dovecot with LDAP in Fedora
 
 *In /etc/dovecot/dovecot.conf* 
 ```
-protocols = imap lmtp submission
+protocols = imap lmtp
 ```
 
 
