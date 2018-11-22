@@ -63,7 +63,13 @@ user_filter = (&(objectClass=CourierMailAccount)(uid=%u))
 blocking = yes
 ```
 
+##Test Dovecot
 
+**Test
+```
+# nc localhost 143
+
+```
 
 
 
@@ -72,4 +78,6 @@ blocking = yes
 
 * https://wiki2.dovecot.org/AuthDatabase/LDAP
 * https://wiki2.dovecot.org/AuthDatabase/LDAP/AuthBinds
+* https://www.server-world.info/en/note?os=Fedora_25&p=mail&f=2
+* https://wiki.dovecot.org/TestInstallation
 
