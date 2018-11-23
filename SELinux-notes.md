@@ -36,13 +36,13 @@ type=AVC msg=audit(1542867852.741:2588): avc:  denied  { name_bind } for  pid=17
 Create the custom rule
 
 ```
-# audit2allow -a -M dovecot_t_vmail
+# grep dovecot /var/log/audit/audit.log  | audit2allow -M sotolito-dovecot
 ```
 
 Add the module:
 
 ```
-# semodule -i dovecot_t_vmail
+# semodule -i sotolito-dovecot
 ```
 
 
@@ -76,4 +76,4 @@ SELINUX=disabled
 * https://en.wikipedia.org/wiki/Security-Enhanced_Linux
 * https://www.tecmint.com/disable-selinux-temporarily-permanently-in-centos-rhel-fedora/
 * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-fixing_problems-allowing_access_audit2allow
-
+* https://danwalsh.livejournal.com/24750.html
