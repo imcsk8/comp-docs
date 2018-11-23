@@ -1,6 +1,6 @@
 # Linux Tricks and Tips
 
-## Shell
+## System Administration
 
 * **Remove string with newline using sed**
 ```
