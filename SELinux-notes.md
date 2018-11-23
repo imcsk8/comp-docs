@@ -12,8 +12,38 @@ Most of the time you can fix stuff getting ```setsebool``` or ```restorecon``` e
 
 audit2allow generates SELinux policies based on denial errors. This errors can be checked via the ```journalctl``` command or the ```/var/log/audit/audit.log``` file.
 
+For example if you have a dovecot IMAP server and it can't access the mail directories with an error like this:
+```
+type=AVC msg=audit(1543001562.316:9797): avc:  denied  { write } for  pid=26077 comm="imap" name="imcsk8" dev="sdc1" ino=7014287 scontext=system_u:system_r:dovecot_t:s0 tcontext=system_u:object_r:nfs_t:s0 tclass=dir permissive=0
+```
 
+To get more info about this problem:
 
+```
+# audit2allow -w -a
+```
+
+The relevant output for this problem should be something like this:
+
+```
+type=AVC msg=audit(1542867852.741:2588): avc:  denied  { name_bind } for  pid=17022 comm="dovecot" src=587 scontext=system_u:system_r:dovecot_t:s0 tcontext=system_u:object_r:smtp_port_t:s0 tclass=tcp_socket permissive=0
+        Was caused by:
+                Missing type enforcement (TE) allow rule.
+
+                You can use audit2allow to generate a loadable module to allow this access.
+```
+
+Create the custom rule
+
+```
+# audit2allow -a -M dovecot_t_vmail
+```
+
+Add the module:
+
+```
+# semodule -i dovecot_t_vmail
+```
 
 
 ## Fuck it just tell me how to disable it!!
