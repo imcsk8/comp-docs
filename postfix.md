@@ -5,7 +5,37 @@ Postfix SMTP with spam, graylist and virus check and LDAP aduthentication.
 ## Installation
 
 ```
-dnf install -y postfix spamassassin amavis clamav perl-ClamAV-Client clamav-server-systemd clamav-scanner-systemd  clamav-filesystem clamav-update postgrey
+dnf install -y postfix spamassassin amavis clamav perl-ClamAV-Client clamav-server-systemd clamav-scanner-systemd  clamav-filesystem clamav-update postgrey opendkim
+```
+
+### OpenDKIM
+
+In opendkim.conf
+```
+LogWhy            Yes
+Syslog            yes
+SyslogSuccess     yes
+#Socket           inet:8891@localhost
+Socket            local:/var/run/opendkim/opendkim.sock
+ReportAddress     dkim@gmail.com
+SendReports       yes
+#UserID            milter
+UserID            postfix
+PidFile           /var/run/opendkim/opendkim.pid
+
+Mode              s
+Canonicalization  relaxed/simple
+#Statistics        /var/lib/opendkim/stats.dat
+
+Domain           /etc/opendkim/domains.txt
+KeyTable         /etc/opendkim/KeyTable
+SigningTable     refile:/etc/opendkim/SigningTable
+```
+
+Start 
+```
+# systemctl enable opendkim
+# systemctl start opendkim
 ```
 
 ## Open Ports
