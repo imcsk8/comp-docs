@@ -18,6 +18,8 @@ success
 # firewall-cmd --reload
 ```
 
+*Keep port 25 closed to the outside for spam prevention*
+
 ## Configure clamav
 
 Configure clamav updates
