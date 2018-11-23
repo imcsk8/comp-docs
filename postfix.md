@@ -8,6 +8,15 @@ Postfix SMTP with spam, graylist and virus check and LDAP aduthentication.
 dnf install -y postfix spamassassin amavis clamav perl-ClamAV-Client clamav-server-systemd clamav-scanner-systemd  clamav-filesystem clamav-update postgrey
 ```
 
+## Open Ports
+
+```
+# firewall-cmd --permanent --add-service=smtps
+success
+# firewall-cmd --permanent --add-port=587/tcp
+success
+# firewall-cmd --reload
+```
 
 ## Configure clamav
 
