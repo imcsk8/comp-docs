@@ -63,9 +63,16 @@ user_filter = (&(objectClass=CourierMailAccount)(uid=%u))
 blocking = yes
 ```
 
-##Test Dovecot
+## Open Firewall port
 
-**Test
+```
+# firewall-cmd --add-service={pop3,imap,imaps} --permanent 
+# firewall-cmd --reload
+```
+
+## Test Dovecot
+
+**Test**
 ```
 # nc localhost 143
 
