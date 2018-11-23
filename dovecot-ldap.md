@@ -75,7 +75,7 @@ blocking = yes
 **Test**
 ```
 # nc localhost 143
-
+A001 LOGIN user@example.com userpass
 ```
 
 
