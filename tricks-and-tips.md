@@ -7,7 +7,7 @@
  sed -i -e ':a' -e 'N' -e '$!ba' -e  's/string to remove\n//g' file
 ```
 
-* **Check SMTPS connection**
+* **Check IMAP SSL connection**
 ```
 # openssl s_client -connect imap.gmail.com:993 
 ```
