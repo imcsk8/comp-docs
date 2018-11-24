@@ -32,6 +32,26 @@ KeyTable         /etc/opendkim/KeyTable
 SigningTable     refile:/etc/opendkim/SigningTable
 ```
 
+Set permissions
+
+```
+# chown -R postfix:postfix /var/run/opendkim
+```
+
+Set user on systemd unit
+
+```
+# cp /usr/lib/systemd/system/opendkim.service /etc/systemd/system/opendkim.service
+```
+
+Edit /etc/systemd/system/opendkim.service
+
+```
+User=postfix
+Group=postfix
+```
+
+
 Start 
 ```
 # systemctl enable opendkim
