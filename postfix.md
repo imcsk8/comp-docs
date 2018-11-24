@@ -58,10 +58,36 @@ Start
 # systemctl start opendkim
 ```
 
+### Postgrey
+
+Gray lists
+
+In /etc/sysconfig/postgrey:
+
+```
+POSTGREY_OPTS="--inet=127.0.0.1:30"
+```
+
+Start postgrey so it generates the SELinux avc messages needed to generate it's policy.
+```
+# systemctl enable postgrey
+# systemctl start postgrey
+```
+
+**SELinux**
+```
+# grep postgrey /var/log/audit/audit.log  | audit2allow -M sotolito_postgrey
+# semodule -i sotolito_postgrey.pp
+### For some reason that i haven't checked you need to generate other policy file
+# grep postgrey /var/log/audit/audit.log  | audit2allow -M sotolito_postgrey2
+# semodule -i sotolito_postgrey2.pp
+```
+
+
 ## Open Ports
 
 ```
-# firewall-cmd --permanent --add-service=smtps
+# firewall-cmd --permanent --add-service={smtp,smtps}
 success
 # firewall-cmd --permanent --add-port=587/tcp
 success
