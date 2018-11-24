@@ -5,7 +5,7 @@ Postfix SMTP with spam, graylist and virus check and LDAP aduthentication.
 ## Installation
 
 ```
-dnf install -y postfix spamassassin amavis clamav perl-ClamAV-Client clamav-server-systemd clamav-scanner-systemd  clamav-filesystem clamav-update postgrey opendkim
+dnf install -y postfix postfix-ldap spamassassin amavis clamav perl-ClamAV-Client clamav-server-systemd clamav-scanner-systemd  clamav-filesystem clamav-update postgrey opendkim
 ```
 
 ### OpenDKIM
