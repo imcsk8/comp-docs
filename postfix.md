@@ -94,8 +94,6 @@ success
 # firewall-cmd --reload
 ```
 
-*Keep port 25 closed to the outside for spam prevention*
-
 ## Configure clamav
 
 Configure clamav updates
@@ -103,6 +101,13 @@ Configure clamav updates
 
 ```
 
+### Configure Amavis
+
+**SELinux**
+```
+# restorecon -R -v /var/amavis/
+
+```
 
 ## References
 * https://www.hiroom2.com/2017/07/12/fedora-26-clamav-en/
