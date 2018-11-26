@@ -6,6 +6,8 @@ Containers are very popular for microservices and their other use cases tend to 
 
 In order to have the best of both worlds we'll consider our container as a disposable unit having the configuration and data volumes mounted from the host filesystem.
 
+The docker container should mount the /etc and /var as external volumes.
+
 Our basic VPS container is going to server web apps so we'll start with this Dockerfile:
 
 ```
