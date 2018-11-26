@@ -21,6 +21,7 @@ RUN groupadd sotolito
 RUN useradd -g sotolito -s /bin/bash -c 'SotolitoLabs User' -d /home/sotolito sotolito
 RUN echo $password | passwd --stdin sotolito
 RUN chage -d 0 sotolito
+RUN echo "sotolito-container" > /etc/hostname
 STOPSIGNAL SIGRTMIN+3
 EXPOSE 80 22
 CMD [ "/sbin/init" ]
