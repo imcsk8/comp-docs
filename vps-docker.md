@@ -14,7 +14,7 @@ Our basic VPS container is going to server web apps so we'll start with this Doc
 FROM fedora:29a
 ENV container docker
 ARG password=examplepass
-RUN dnf -y install nginx openssh-server openssh-clients procps-ng
+RUN dnf -y install nginx openssh-server openssh-clients procps-ng passwd mariadb-server php-fpm
 RUN dnf clean all
 RUN systemctl enable sshd nginx
 RUN groupadd sotolito 
