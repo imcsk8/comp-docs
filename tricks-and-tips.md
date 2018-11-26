@@ -21,3 +21,11 @@ If you make a manual change to /etc/passwd the sssd cache must be deleted this w
 # rm /var/lib/sss/mc/passwd
 # systemctl start sssd
 ```
+
+* **Run Docker as regular user**
+
+After installing Docker:
+```
+# groupadd docker
+# usermod -aG docker username
+```
