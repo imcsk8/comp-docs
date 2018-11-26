@@ -28,6 +28,15 @@ CMD [ "/sbin/init" ]
 
 ```
 
+Since we're gonna have static ip's for our VPS's we need a user defined network:
+
+Create a new docker network
+
+```
+# docker network create --subnet=172.18.0.0/16 sotolito-vps-net
+
+```
+
 ## References
 
 * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html/container_security_guide/docker_selinux_security_policy
