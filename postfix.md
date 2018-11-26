@@ -106,6 +106,7 @@ Configure clamav updates
 **SELinux**
 ```
 # restorecon -R -v /var/amavis/
+# setsebool -P nis_enabled 1
 
 ```
 
