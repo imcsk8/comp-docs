@@ -14,3 +14,6 @@ Our basic VPS container is going to server web apps so we'll start with this Doc
 
 ```
 
+## References
+
+* https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html/container_security_guide/docker_selinux_security_policy
