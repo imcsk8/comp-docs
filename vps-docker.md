@@ -37,6 +37,13 @@ Create a new docker network
 
 ```
 
+Use a systemd unit for each VPS, we'll use [systemd-docker](https://github.com/ibuildthecloud/systemd-docker "systemd-docker")
+
+```
+
+```
+
+
 ## References
 
 * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html/container_security_guide/docker_selinux_security_policy
