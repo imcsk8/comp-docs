@@ -71,6 +71,23 @@ NotifyAccess=all
 WantedBy=multi-user.target
 ```
 
+Copy the unit file to the systemd directory and reload daemons.
+
+*As root*
+```
+# cp sotolito-vps@.service /usr/lib/systemd/system/
+# sudo systemctl daemon-reload
+```
+
+This is a template unit file, the VPS's units are referenced as symlinks in the */etc/systemd/system/sotolito-vps.target.wants* with names like: sotolito-vps@vps-1.service for the vps-1 VPS.
+
+*As root*
+```
+# mkdir /etc/systemd/system/sotolito-vps.target.wants
+# ln -s /usr/lib/systemd/system/sotolito-vps@.service  sotolito-vps@sotolitolabs-vps.service
+```
+
+
 Configuration file sotolitolabs-vps.cfg:
 
 ```
