@@ -49,7 +49,7 @@ Building systemd-docker...
 $ sudo cp bin/systemd-docker /usr/local/bin/.
 ```
 
-Create systemd unit file: sotolito-vps@.service
+Create systemd template unit file: sotolito-vps@.service, this file
 
 ```
 [Unit]
@@ -71,9 +71,11 @@ NotifyAccess=all
 WantedBy=multi-user.target
 ```
 
-Configuration file:
+Configuration file sotolitolabs-vps.cfg:
 
 ```
+VPS_IP=172.18.0.11
+VPS_NET=sotolito-vps-net
 ```
 
 ## References
