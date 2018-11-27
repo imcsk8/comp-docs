@@ -60,6 +60,7 @@ Requires=docker.service
 [Service]
 TimeoutStartSec=0
 ExecStartPre=/usr/bin/docker pull sotolito-vps-base
+EnvironmentFile=/etc/systemd/system/sotolito-vps.target.wants/%i.cfg
 ExecStart=/usr/local/bin/systemd-docker --cgroups name=systemd run --rm --name %i  sotolito-vps-base
 Restart=always
 RestartSec=10s
@@ -70,6 +71,10 @@ NotifyAccess=all
 WantedBy=multi-user.target
 ```
 
+Configuration file:
+
+```
+```
 
 ## References
 
