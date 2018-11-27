@@ -39,13 +39,41 @@ Create a new docker network
 
 Use a systemd unit for each VPS, we'll use [systemd-docker](https://github.com/ibuildthecloud/systemd-docker "systemd-docker")
 
+Install [systemd-docker](https://github.com/ibuildthecloud/systemd-docker "systemd-docker")
+
+```
+$ git clone https://github.com/ibuildthecloud/systemd-docker.git
+$ cd systemd-docker
+$ ./build 
+Building systemd-docker...
+$ sudo cp bin/systemd-docker /usr/local/bin/.
 ```
 
+Create systemd unit file: sotolito-vps@.service
+
+```
+[Unit]
+Description=Sotolito VPS
+After=docker.service
+Requires=docker.service
+ 
+[Service]
+TimeoutStartSec=0
+ExecStartPre=/usr/bin/docker pull sotolito-vps-base
+ExecStart=/usr/local/bin/systemd-docker --cgroups name=systemd run --rm --name %i  sotolito-vps-base
+Restart=always
+RestartSec=10s
+Type=notify
+NotifyAccess=all
+ 
+[Install]
+WantedBy=multi-user.target
 ```
 
 
 ## References
 
+* https://container-solutions.com/running-docker-containers-with-systemd/
 * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html/container_security_guide/docker_selinux_security_policy
 * https://github.com/ibuildthecloud/systemd-docker
 
