@@ -1,4 +1,4 @@
-# Virtual Private Server using docker containers
+# Virtual Private Server using containers
 
 Containers are very popular for microservices and their other use cases tend to be overlooked. Since containers provide isolation for Operating System Virtualization, they can be used as VPS's.
 
@@ -28,26 +28,16 @@ CMD [ "/sbin/init" ]
 
 ```
 
-Since we're gonna have static ip's for our VPS's we need a user defined network:
-
-Create a new docker network
+*For now We'll use docker for building the images*
 
 ```
-# docker network create --subnet=172.18.0.0/16 sotolito-vps-net
-
+# docker build -t sotolito-vps .
 ```
 
-Use a systemd unit for each VPS, we'll use [systemd-docker](https://github.com/ibuildthecloud/systemd-docker "systemd-docker")
+For a VPS an init system is needed, as we can see in the Dockerfile we'll use the default init system of the distribution.
+Instead of using (Docker)[https://www.docker.com/] for our containers we'll use (runc)[https://github.com/opencontainers/runc] since it plays very well with systemd.
 
-Install [systemd-docker](https://github.com/ibuildthecloud/systemd-docker "systemd-docker")
-
-```
-$ git clone https://github.com/ibuildthecloud/systemd-docker.git
-$ cd systemd-docker
-$ ./build 
-Building systemd-docker...
-$ sudo cp bin/systemd-docker /usr/local/bin/.
-```
+**Use a systemd unit for each VPS.**
 
 Create systemd template unit file: sotolito-vps@.service, this file
 
@@ -58,13 +48,18 @@ After=docker.service
 Requires=docker.service
  
 [Service]
-TimeoutStartSec=0
-ExecStartPre=/usr/bin/docker pull sotolito-vps-base
+Slice=machine.slice
+Delegate=true
+CPUWeight=100
+MemoryLimit=512M
+TimeoutSec=300
 EnvironmentFile=/etc/systemd/system/sotolito-vps.target.wants/%i.cfg
-ExecStart=/usr/local/bin/systemd-docker --cgroups name=systemd run --rm --name %i  sotolito-vps-base
+ExecStart=/usr/bin/runc run --systemd-cgroup machine.slice -d --name %i -b sotolito-vps-base
+ExecStopPost=/usr/bin/runc delete %i
+KillMode=mixed
 Restart=always
 RestartSec=10s
-Type=notify
+Type=forking
 NotifyAccess=all
  
 [Install]
@@ -97,7 +92,9 @@ VPS_NET=sotolito-vps-net
 
 ## References
 
+* https://coreos.com/rkt/docs/latest/using-rkt-with-systemd.html
+* https://coreos.com/rkt/
 * https://container-solutions.com/running-docker-containers-with-systemd/
 * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html/container_security_guide/docker_selinux_security_policy
-* https://github.com/ibuildthecloud/systemd-docker
+
 
