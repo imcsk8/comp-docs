@@ -11,7 +11,7 @@ The docker container should mount the /etc and /var as external volumes.
 Our basic VPS container is going to server web apps so we'll start with this Dockerfile to create a base image.
 
 ```
-FROM fedora:29a
+FROM fedora:29
 ENV container docker
 ARG password=examplepass
 RUN dnf -y install nginx openssh-server openssh-clients procps-ng passwd mariadb-server php-fpm
