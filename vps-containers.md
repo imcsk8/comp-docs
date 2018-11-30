@@ -151,8 +151,42 @@ Extend capabilities for systemd containers
 		},
 ```
 
+Add VPS specific persistent directories
 
+```
+	"mounts": [
+		{
+			"destination": "/etc",
+			"type": "bind",
+			"source": "/home/vps/users/user1/etc",
+                        "options": [
+                            "bind",
+                            "rw"
+                        ]
+			"destination": "/var",
+			"type": "bind",
+			"source": "/home/vps/users/user1/var",
+                        "options": [
+                            "bind",
+                            "rw"
+                        ]
+			"destination": "/home",
+			"type": "bind",
+			"source": "/home/vps/users/user1/home",
+                        "options": [
+                            "bind",
+                            "rw"
+                        ]
 
+```
+
+Get the /var and /etc directories from the rootfs (this has to be created for each VPS)
+```
+# mkdir -p /home/vps/users/vps-guest1
+# cp -rp rootfs/etc /home/vps/users/vps-guest1/etc
+# cp -rp rootfs/var /home/vps/users/vps-guest1/var
+# cp -rp rootfs/home /home/vps/users/vps-guest1/home
+```
 
 **Use a systemd unit for each VPS.**
 
