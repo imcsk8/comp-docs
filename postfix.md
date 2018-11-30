@@ -38,6 +38,11 @@ Set permissions
 # chown -R postfix:postfix /var/run/opendkim
 ```
 
+Change the user in /etc/tmpfiles.d/opendkim.conf
+```
+D /var/run/opendkim 0700 postfix postfix -
+```
+
 Set user on systemd unit
 
 ```
