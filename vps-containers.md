@@ -33,9 +33,126 @@ CMD [ "/sbin/init" ]
 ```
 # docker build -t sotolito-vps .
 ```
+*We can also use buildah*
+
+```
+# buildah bud -f Dockerfile  -t sotolito-vps-base
+```
 
 For a VPS an init system is needed, as we can see in the Dockerfile we'll use the default init system of the distribution.
 Instead of using (Docker)[https://www.docker.com/] for our containers we'll use (runc)[https://github.com/opencontainers/runc] since it plays very well with systemd.
+
+**Create the OCI container bundle**
+
+Extract the rootfs
+```
+# mkdir rootfs
+# docker export $(docker create sotolito-vps-base) | tar -C rootfs -xvf -
+```
+
+Create the spec file
+```
+# runc spec
+```
+
+Extend capabilities for systemd containers
+```
+  		"capabilities": {
+			"bounding": [
+                		"CAP_SYS_ADMIN",
+                		"CAP_SYS_TIME",
+		                "CAP_SYS_CHROOT",
+             			"CAP_CHOWN",
+		                "CAP_SETUID",
+                		"CAP_SETGID",
+               			"CAP_FOWNER",
+                		"CAP_DAC_OVERRIDE",
+                		"CAP_FSETID",
+                		"CAP_SETFCAP",
+                		"CAP_KILL",
+                		"CAP_SETPCAP",
+                		"CAP_NET_BIND_SERVICE",
+                		"CAP_NET_RAW",
+                		"CAP_NET_BROADCAST",
+                		"CAP_AUDIT_WRITE"
+			],
+			"effective": [
+				"CAP_SYS_ADMIN",
+                		"CAP_SYS_TIME",
+                		"CAP_SYS_CHROOT",
+                		"CAP_CHOWN",
+                		"CAP_SETUID",
+                		"CAP_SETGID",
+                		"CAP_FOWNER",
+                		"CAP_DAC_OVERRIDE",
+                		"CAP_FSETID",
+                		"CAP_SETFCAP",
+                		"CAP_KILL",
+                		"CAP_SETPCAP",
+                		"CAP_NET_BIND_SERVICE",
+                		"CAP_NET_RAW",
+                		"CAP_NET_BROADCAST",
+                		"CAP_AUDIT_WRITE"
+		    ],
+			"inheritable": [
+ 	            		"CAP_SYS_ADMIN",
+                		"CAP_SYS_TIME",
+                		"CAP_SYS_CHROOT",
+                		"CAP_CHOWN",
+                		"CAP_SETUID",
+                		"CAP_SETGID",
+                		"CAP_FOWNER",
+                		"CAP_DAC_OVERRIDE",
+                		"CAP_FSETID",
+                		"CAP_SETFCAP",
+                		"CAP_KILL",
+                		"CAP_SETPCAP",
+                		"CAP_NET_BIND_SERVICE",
+                		"CAP_NET_RAW",
+                		"CAP_NET_BROADCAST",
+                		"CAP_AUDIT_WRITE"
+			],
+			"permitted": [
+	            		"CAP_SYS_ADMIN",
+                		"CAP_SYS_TIME",
+                		"CAP_SYS_CHROOT",
+                		"CAP_CHOWN",
+                		"CAP_SETUID",
+                		"CAP_SETGID",
+                		"CAP_FOWNER",
+                		"CAP_DAC_OVERRIDE",
+                		"CAP_FSETID",
+                		"CAP_SETFCAP",
+                		"CAP_KILL",
+                		"CAP_SETPCAP",
+                		"CAP_NET_BIND_SERVICE",
+                		"CAP_NET_RAW",
+                		"CAP_NET_BROADCAST",
+                		"CAP_AUDIT_WRITE"
+			],
+			"ambient": [
+	            		"CAP_SYS_ADMIN",
+                		"CAP_SYS_TIME",
+               			"CAP_SYS_CHROOT",
+                		"CAP_CHOWN",
+                		"CAP_SETUID",
+                		"CAP_SETGID",
+                		"CAP_FOWNER",
+                		"CAP_DAC_OVERRIDE",
+                		"CAP_FSETID",
+                		"CAP_SETFCAP",
+                		"CAP_KILL",
+                		"CAP_SETPCAP",
+                		"CAP_NET_BIND_SERVICE",
+                		"CAP_NET_RAW",
+                		"CAP_NET_BROADCAST",
+                		"CAP_AUDIT_WRITE"
+			]
+		},
+```
+
+
+
 
 **Use a systemd unit for each VPS.**
 
