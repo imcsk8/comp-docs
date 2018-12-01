@@ -241,6 +241,13 @@ VPS_IP=172.18.0.11
 VPS_NET=sotolito-vps-net
 ```
 
+### Troubleshooting
+
+* Kill a container
+```
+runc kill mycontainer KILL
+```
+
 ## References
 
 * https://coreos.com/rkt/docs/latest/using-rkt-with-systemd.html
