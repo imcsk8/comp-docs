@@ -55,6 +55,14 @@ Create the spec file
 # runc spec
 ```
 
+Networking
+
+Networking sucks so we need this little tool
+```
+# go get github.com/genuinetools/netns
+```
+
+
 Extend capabilities for systemd containers
 ```
   		"capabilities": {
@@ -180,6 +188,17 @@ Add VPS specific persistent directories
 
 ```
 
+Networking for conainers
+```
+        "hooks": {
+                "prestart": [
+                {
+                        "path": "/home/vservers/OCI-Image-Bundles/utils/bin/netns"
+                }
+                ]
+        }
+```
+
 Get the /var and /etc directories from the rootfs (this has to be created for each VPS)
 ```
 # mkdir -p /home/vps/users/vps-guest1
@@ -241,6 +260,10 @@ VPS_IP=172.18.0.11
 VPS_NET=sotolito-vps-net
 ```
 
+Run the container
+```
+/usr/bin/runc --systemd-cgroup run test-vps-container
+```
 ### Troubleshooting
 
 * Kill a container
