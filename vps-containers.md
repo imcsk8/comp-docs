@@ -62,6 +62,16 @@ Networking sucks so we need this little tool
 # go get github.com/genuinetools/netns
 ```
 
+**Modify config.json**
+
+Disable terminal 
+
+```
+{
+        "ociVersion": "1.0.1-dev",
+        "process": {
+                "terminal": false,
+```
 
 Extend capabilities for systemd containers
 ```
@@ -213,27 +223,24 @@ Create systemd template unit file: sotolito-vps@.service, this file
 
 ```
 [Unit]
-Description=Sotolito VPS
-After=docker.service
-Requires=docker.service
- 
+Description=Sotolito VPS %i
+After=network.target
+
 [Service]
 Slice=machine.slice
 Delegate=true
 CPUWeight=100
 MemoryLimit=512M
-TimeoutSec=300
+#TimeoutSec=300
 EnvironmentFile=/etc/systemd/system/sotolito-vps.target.wants/%i.cfg
-ExecStart=/usr/bin/runc run --systemd-cgroup machine.slice -d --name %i -b sotolito-vps-base
-ExecStopPost=/usr/bin/runc delete %i
+ExecStart=/home/vservers/OCI-Image-Bundles/utils/sotolito-vps/vpsctl start %i
+ExecStop=/home/vservers/OCI-Image-Bundles/utils/sotolito-vps/vpsctl stop %i
 KillMode=mixed
 Restart=always
 RestartSec=10s
-Type=forking
-NotifyAccess=all
- 
+
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.targ
 ```
 
 Copy the unit file to the systemd directory and reload daemons.
@@ -277,5 +284,6 @@ runc kill mycontainer KILL
 * https://coreos.com/rkt/
 * https://container-solutions.com/running-docker-containers-with-systemd/
 * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html/container_security_guide/docker_selinux_security_policy
+* https://github.com/SotolitoLabs/sotolito-vps
 
 
