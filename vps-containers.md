@@ -6,7 +6,12 @@ Containers are very popular for microservices and their other use cases tend to 
 
 In order to have the best of both worlds we'll consider our container as a disposable unit having the configuration and data volumes mounted from the host filesystem.
 
-The docker container should mount the /etc and /var as external volumes.
+The container should mount the /etc, /home and /var as external volumes.
+
+The http traffic will be routed in the host with haproxy.
+The ssh traffil will be routed using iptables rules.
+
+## Implementation
 
 Our basic VPS container is going to server web apps so we'll start with this Dockerfile to create a base image.
 
@@ -271,7 +276,17 @@ Run the container
 ```
 /usr/bin/runc --systemd-cgroup run test-vps-container
 ```
-### Troubleshooting
+
+
+## Networking
+
+### HAProxy
+
+```
+TODO
+```
+
+## Troubleshooting
 
 * Kill a container
 ```
