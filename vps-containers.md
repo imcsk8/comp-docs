@@ -280,6 +280,13 @@ Run the container
 
 ## Networking
 
+### IPTables
+
+Allow containers to access the internet
+```
+iptables -t nat -A POSTROUTING -s 172.19.0.0/16 ! -o netns0 -j MASQUERADE
+```
+
 ### HAProxy
 
 ```
