@@ -297,6 +297,26 @@ Allow containers to access the internet
 # firewall-cmd --reload
 ```
 
+**Enable SSH for VPS**
+
+Open Ports
+
+```
+# firewall-cmd --permanent --add-port=2000-4000/tcp
+success
+# firewall-cmd --reload
+
+```
+
+Redirect ssh port for VPS
+
+```
+# firewall-cmd  --zone=public --add-forward-port=port=6000:proto=tcp:toaddr=172.19.0.11:toport=22
+# firewall-cmd --reload
+```
+
+
+
 ### HAProxy
 
 ```
