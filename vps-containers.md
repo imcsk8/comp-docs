@@ -311,7 +311,7 @@ success
 Redirect ssh port for VPS
 
 ```
-# firewall-cmd  --zone=public --add-forward-port=port=6000:proto=tcp:toaddr=172.19.0.11:toport=22
+# firewall-cmd --permanent --zone="public" --add-forward-port=port=2000:proto=tcp:toport=22:toaddr=172.19.0.11
 # firewall-cmd --reload
 ```
 
