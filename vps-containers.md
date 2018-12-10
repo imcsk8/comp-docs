@@ -284,7 +284,10 @@ Run the container
 
 Allow containers to access the internet
 ```
-iptables -t nat -A POSTROUTING -s 172.19.0.0/16 ! -o netns0 -j MASQUERADE
+# iptables -t nat -A POSTROUTING -o enp9s0 -j MASQUERADE
+# iptables -I FORWARD -i netns0 -o enp9s0 -j ACCEPT
+# iptables -I FORWARD -i enp9s0 -o netns0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+
 ```
 
 ### HAProxy
