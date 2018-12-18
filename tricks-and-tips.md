@@ -45,4 +45,14 @@ Create certificate
 # certbot certonly --webroot -w /var/www/example -d example.com -d www.example.com -w /var/www/thing 
 ```
 
+Renew Certificates
+```
+# certbot renew --dry-run
+```
+
+If everything is ok:
+```
+# certbot renew
+```
+
 *More:* https://certbot.eff.org/lets-encrypt/fedora-haproxy
