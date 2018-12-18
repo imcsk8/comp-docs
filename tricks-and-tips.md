@@ -29,3 +29,20 @@ After installing Docker:
 # groupadd docker
 # usermod -aG docker username
 ```
+
+* **Letsencrypt**
+
+Letsencrypt its a free Certificate Authority that allows us to create valid signed certificates.
+
+Install
+```
+# dnf install -y certbot
+```
+
+Create certificate
+
+```
+# certbot certonly --webroot -w /var/www/example -d example.com -d www.example.com -w /var/www/thing 
+```
+
+*More:* https://certbot.eff.org/lets-encrypt/fedora-haproxy
