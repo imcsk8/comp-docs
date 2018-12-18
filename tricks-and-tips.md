@@ -55,4 +55,25 @@ If everything is ok:
 # certbot renew
 ```
 
+If it fails renew manually
+```
+# certbot certonly -d ivan.chavero.com.mx
+```
+
 *More:* https://certbot.eff.org/lets-encrypt/fedora-haproxy
+
+* **HAProxy with letstencrypt certificates**
+
+HAProxy needs the the private key and the certificates in a bundle:
+```
+# cd /etc/letsencrypt/live/ivan.chavero.com.mx/
+# cat privkey.pem > haproxy_fullchain.pem
+# cat fullchain.pem >> haproxy_fullchain.pem
+# ln -s /etc/letsencrypt/live/ivan.chavero.com.mx/haproxy_fullchain.pem /etc/ssl/haproxy/ivan.chavero.com.mx.pem
+```
+
+Configure HAProxy:
+In /etc/haproxy/haproxy.cfg
+```
+bind 10.0.0.1:443 ssl crt /etc/ssl/haproxy
+```
