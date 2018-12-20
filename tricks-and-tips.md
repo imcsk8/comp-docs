@@ -77,3 +77,38 @@ In /etc/haproxy/haproxy.cfg
 ```
 bind 10.0.0.1:443 ssl crt /etc/ssl/haproxy
 ```
+
+* **Vim for go development**
+
+On ~/.vimrc using Plug
+
+```
+call plug#begin('~/.vim/plugged')
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'valloric/youcompleteme'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'powerline/powerline'
+
+
+" Initialize plugin system
+call plug#end()
+
+```
+
+Install the plugins inside vim
+
+```
+:PlugInstall
+```
+
+YouCompleteMe uses a server, install it
+
+```
+$ sudo dnf install cmake gcc-c++ make python3-devel
+$ cd ~/.vim/plugged/youcompleteme
+$ ./install.py  --clang-completer --ts-completer --go-completer
+
+```
