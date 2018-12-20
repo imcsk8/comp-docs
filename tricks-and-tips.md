@@ -91,9 +91,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'valloric/youcompleteme'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'powerline/powerline'
-
-
 " Initialize plugin system
 call plug#end()
 
