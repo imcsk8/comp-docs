@@ -3,7 +3,7 @@
 Minishift is a fork of minikube focues on provisioning OpenShift locally by running a single node
 OpenShift inside a VM.
 
-## Requisites
+## Prerequisites
 
 **Install KVM**
 
@@ -27,11 +27,24 @@ $ newgrp libvirt
 
 **Install the KVM driver for docker machine**
 
-*This is just plain wrong, Fedora should package this puppy**
+*This is just plain wrong, Fedora should package this puppy*
 
 ```
 # curl -L https://github.com/dhiltgen/docker-machine-kvm/releases/download/v0.10.0/docker-machine-driver-kvm-centos7 -o /usr/local/bin/docker-machine-driver-kvm
 # chmod +x /usr/local/bin/docker-machine-driver-kvm
+```
+
+## Install Minishift
+
+*This also should be packaged*
+
+
+**Download and install from the website like a caveman**
+
+```
+$ mkdir minishift
+$ curl -L https://github.com/minishift/minishift/releases/download/v1.30.0/minishift-1.30.0-linux-amd64.tgz -o minishift-1.30.0-linux-amd64.tgz
+$ 
 ```
 
 
