@@ -71,7 +71,9 @@ $ newgrp libvirt
  53.69 MiB / 53.89 MiB [==========================================================================================================================================================]  99.63% 0s 53.89 MiB / 53.89 MiB [==========================================================================================================================================================] 100.00% 0sOK
 -- Checking if provided oc flags are supported ... OK
 -- Starting the OpenShift cluster using 'kvm' hypervisor ...
--- Minishift VM will be configured with ...
+```
+<details><summary>Expand output</summary>
+```-- Minishift VM will be configured with ...
    Memory:    4 GB
    vCPUs :    2
    Disk size: 20 GB
@@ -178,7 +180,9 @@ Login to server ...
 Creating initial project "myproject" ...
 Server Information ...
 OpenShift server started.
-
+```
+</details>
+```
 The server is accessible via web console at:
     https://192.168.42.111:8443/console
 
