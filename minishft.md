@@ -183,7 +183,9 @@ Creating initial project "myproject" ...
 Server Information ...
 OpenShift server started.
 ```
+
 </details>
+
 ```
 The server is accessible via web console at:
     https://192.168.42.111:8443/console
