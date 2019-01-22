@@ -73,7 +73,9 @@ $ newgrp libvirt
 -- Starting the OpenShift cluster using 'kvm' hypervisor ...
 ```
 <details><summary>Expand output</summary>
-```-- Minishift VM will be configured with ...
+
+```
+ -- Minishift VM will be configured with ...
    Memory:    4 GB
    vCPUs :    2
    Disk size: 20 GB
