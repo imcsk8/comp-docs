@@ -202,10 +202,25 @@ To login as administrator:
 
 ```
 
+## Get the oc binary
 
+```
+# minishift oc-env
+export PATH="/root/.minishift/cache/oc/v3.11.0/linux:$PATH"
+# Run this command to configure your shell:
+# eval $(minishift oc-env)
 
+```
 
+## External access
 
+I have a remote lab with access to the 8081 port, configure HAProxy serving the OpenShift console
+
+In /etc/haproxy/haproxy.cfg
+
+```
+
+```
 
 
 
