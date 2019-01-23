@@ -52,7 +52,7 @@ $ newgrp libvirt
 ## Start Minishift
 
 ```
-# minishift start 
+# minishift start --public-hostname example.com
 -- Starting profile 'minishift'
 -- Check if deprecated options are used ... OK
 -- Checking if https://github.com is reachable ... OK
