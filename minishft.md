@@ -42,9 +42,8 @@ $ newgrp libvirt
 **Download and install from the website like a caveman**
 
 ```
-# cd /usr/src
-# curl -L https://github.com/minishift/minishift/releases/download/v1.30.0/minishift-1.30.0-linux-amd64.tgz -o minishift-1.30.0-linux-amd64.tgz
 # cd /usr/local
+# curl -L https://github.com/minishift/minishift/releases/download/v1.30.0/minishift-1.30.0-linux-amd64.tgz -o minishift-1.30.0-linux-amd64.tgz
 # tar -zxvf /usr/src/minishift/minishift-1.30.0-linux-amd64.tgz
 # ln -s minishift-1.30.0-linux-amd64 minishift
 # export PATH=$PATH:/usr/local/minishift
