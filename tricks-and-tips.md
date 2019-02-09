@@ -110,3 +110,25 @@ $ cd ~/.vim/plugged/youcompleteme
 $ ./install.py  --clang-completer --ts-completer --go-completer
 
 ```
+
+* **Grow Logical Volume**
+
+```
+# lvextend -L60G /dev/fedora/root
+```
+
+*Extend to all available space*
+
+```
+lvextend -l +100%FREE /dev/fedora/root
+```
+
+**Grow the filesystem**
+
+*Assuming that the partition is mounted on /*
+
+```
+# xfs_growfs /
+```
+
+
