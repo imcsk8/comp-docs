@@ -142,3 +142,9 @@ lvextend -l +100%FREE /dev/fedora/root
 ```
 # lvcreate -l +100%FREE -n ceph fedora
 ```
+
+* **Copy ssh key to a host**
+
+```
+# ssh-copy-id 192.168.1.10
+```
