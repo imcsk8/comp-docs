@@ -131,4 +131,14 @@ lvextend -l +100%FREE /dev/fedora/root
 # xfs_growfs /
 ```
 
+* **Create a Logical Volume**
 
+```
+# lvcreate -L 100G -n var fedora
+```
+
+*Set size to the rest of disk free space*
+
+```
+# lvcreate -l +100%FREE -n ceph fedora
+```
