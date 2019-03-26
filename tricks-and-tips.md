@@ -148,3 +148,8 @@ lvextend -l +100%FREE /dev/fedora/root
 ```
 # ssh-copy-id 192.168.1.10
 ```
+
+* **Resize qcow image**
+```
+qemu-img resize nice-superduper-image.qcow2 +5G
+```
