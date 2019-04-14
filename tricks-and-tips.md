@@ -157,3 +157,11 @@ qemu-img resize nice-superduper-image.qcow2 +5G
 * **Share internet using Gnome GUI**
 
 * https://tutorials.technology/tutorials/74-How-to-share-internet-with-Gnome-3-or-Fedora-26-also.html
+
+* **Check loaded modules directly**
+
+If for some reason (dracut shell?) you can't use the Linux module management utilities you 
+can check your loaded modules by checking the contents of: */proc/modules*
+```
+# cat /proc/modules
+```
