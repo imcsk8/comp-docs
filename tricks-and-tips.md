@@ -165,3 +165,11 @@ can check your loaded modules by checking the contents of: */proc/modules*
 ```
 # cat /proc/modules
 ```
+
+* **Set ansible host without using a hosts file**
+
+Just add a "," after the host name (*WTF! note very well documented*)
+
+```
+$ ansible-playbook -i hostname.com, my-playbook.yaml
+```
