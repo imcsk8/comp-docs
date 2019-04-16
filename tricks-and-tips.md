@@ -173,3 +173,9 @@ Just add a "," after the host name (*WTF! note very well documented*)
 ```
 $ ansible-playbook -i hostname.com, my-playbook.yaml
 ```
+
+* **Set Ansible user on the command line**
+
+```
+$ ansible-playbook -u root my-supeduperplaybook.yaml
+```
