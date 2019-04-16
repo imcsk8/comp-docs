@@ -166,7 +166,7 @@ can check your loaded modules by checking the contents of: */proc/modules*
 # cat /proc/modules
 ```
 
-* **Set ansible host without using a hosts file**
+* **Set Ansible host on the command line**
 
 Just add a "," after the host name (*WTF! note very well documented*)
 
