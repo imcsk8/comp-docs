@@ -123,7 +123,7 @@ $ ./install.py  --clang-completer --ts-completer --go-completer
 lvextend -l +100%FREE /dev/fedora/root
 ```
 
-**Grow the filesystem**
+* **Grow the filesystem**
 
 *Assuming that the partition is mounted on /*
 
