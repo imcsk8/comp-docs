@@ -1,6 +1,6 @@
 # Wordpress behind HAProxy with SSL termination
 
-Setting this up is really fucking problematic *(yes i'm writing this after frustrating debugging and reading lots of documentation)* so in order to make my life (and hopefully yours) easier i'm documenting this.
+Setting this up is really fucking problematic *(yes i'm writing this after a frustrating debugging session and reading lots of documentation)* so in order to make my life (and hopefully yours) easier i'm documenting this.
 
 ## HAProxy
 
