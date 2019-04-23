@@ -29,6 +29,7 @@ if($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'){
 ```
 
 That's it!
+
 Be happy :D
 
 # References
