@@ -179,3 +179,12 @@ $ ansible-playbook -i hostname.com, my-playbook.yaml
 ```
 $ ansible-playbook -u root my-supeduperplaybook.yaml
 ```
+
+* **Use podman as non root user**
+This files specifies the user and group IDs that ordinary users can use, with the newuidmap
+command, to configure uid mapping in a user namespace.
+
+```
+# echo ichavero:100000:65536 >> /etc/subuid
+# echo ichavero:100000:65536 >> /etc/subgid
+```
