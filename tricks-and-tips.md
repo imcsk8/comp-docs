@@ -188,3 +188,9 @@ command, to configure uid mapping in a user namespace.
 # echo ichavero:100000:65536 >> /etc/subuid
 # echo ichavero:100000:65536 >> /etc/subgid
 ```
+
+* **Create pods using podman and kubernetes yaml files**
+
+```
+# podman play kube yamlfile.yaml
+```
