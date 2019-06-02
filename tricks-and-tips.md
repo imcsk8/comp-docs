@@ -194,3 +194,9 @@ command, to configure uid mapping in a user namespace.
 ```
 # podman play kube yamlfile.yaml
 ```
+
+* **List image registry from the command line**
+
+```
+curl -X GET -u username:password https://docker.io/v2/_catalog
+```
