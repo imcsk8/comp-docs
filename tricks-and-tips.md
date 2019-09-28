@@ -207,3 +207,11 @@ command, to configure uid mapping in a user namespace.
 ```
 curl -X GET -u username:password https://docker.io/v2/_catalog
 ```
+
+* **Wordpress behind HAProxy SSL termination**
+If the force ssl option is set in wordpress but the SSL is being terminated by HAProxy (or other reverse proxy) wordpress will check with `is_ssl()` function for the `$_SERVER['HTTPS']` entry to be `on` but since HAProxy terminates the SSL connection and communicates with the backend via plain HTTP the wordpress web server won't set this entry in the `$_SERVER` array, you have to modify `wp-config.php` to set `$_SERVER['HTTPS']` manually:
+
+```
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
+    $_SERVER['HTTPS'] = 'on';
+```
