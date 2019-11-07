@@ -215,3 +215,7 @@ If the force ssl option is set in wordpress but the SSL is being terminated by H
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
     $_SERVER['HTTPS'] = 'on';
 ```
+
+* **OpenVPN**
+
+https://fedoraproject.org/wiki/Openvpn
