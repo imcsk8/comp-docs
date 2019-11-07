@@ -219,3 +219,22 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
 * **OpenVPN**
 
 https://fedoraproject.org/wiki/Openvpn
+
+** Enable LDAP authentication **
+
+Install LDAP plugin
+
+```
+# dnf install -y openvpn-auth-ldap.x86_64
+```
+
+Configure `/etc/openvpn/auth/ldap.conf` with the proper LDAP account and DN
+
+
+Add this to the config file:
+
+```
+# Enable LDAP authentication
+plugin /usr/lib64/openvpn/plugins/openvpn-auth-ldap.so /etc/openvpn/auth/ldap.conf
+client-cert-not-required
+```
