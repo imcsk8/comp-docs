@@ -238,3 +238,20 @@ Add this to the config file:
 plugin /usr/lib64/openvpn/plugins/openvpn-auth-ldap.so /etc/openvpn/auth/ldap.conf
 client-cert-not-required
 ```
+
+* **Limit ssh connection attempts using firewalld**
+To avoid brute force attacks while using firewalld
+
+```
+# firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT_direct 0 -p tcp --dport 22 -m state --state NEW -m recent --set
+# firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT_direct 1 -p tcp --dport 22 -m state --state NEW -m recent --update --seconds 30 --hitcount 4 -j REJECT --reject-with tcp-reset
+# firewall-cmd --reload
+```
+
+If you have several ports:
+
+```
+# firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT_direct 0 -p tcp --dport 6000-7000 -m state --state NEW -m recent --set
+# firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT_direct 1 -p tcp --dport 6000-7000 -m state --state NEW -m recent --update --seconds 30 --hitcount 4 -j REJECT --reject-with tcp-reset
+# firewall-cmd --reload
+```
