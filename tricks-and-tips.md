@@ -251,7 +251,7 @@ To avoid brute force attacks while using firewalld
 If you have several ports:
 
 ```
-# firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT_direct 0 -p tcp --dport 6000-7000 -m state --state NEW -m recent --set
-# firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT_direct 1 -p tcp --dport 6000-7000 -m state --state NEW -m recent --update --seconds 30 --hitcount 4 -j REJECT --reject-with tcp-reset
+# firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT_direct 0 -p tcp --dport 7000:9000 -m state --state NEW -m recent --set
+# firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT_direct 1 -p tcp --dport 7000:9000 -m state --state NEW -m recent --update --seconds 30 --hitcount 4 -j REJECT --reject-with tcp-reset
 # firewall-cmd --reload
 ```
