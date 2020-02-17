@@ -155,6 +155,7 @@ lvextend -l +100%FREE /dev/fedora/root
 # xfs_repair /dev/mapper/sotolito-var
 # mount /dev/mapper/sotolito-var /mnt
 # xfsdump -f var-backpu.dump /mnt
+# umount /mnt
 # lvreduce -L 80G /dev/mapper/sotolito-var
 # mkfs.xfs -f /dev/mapper/sotolito-var
 # mount /dev/mapper/sotolito-var /mnt
