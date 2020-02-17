@@ -150,6 +150,18 @@ lvextend -l +100%FREE /dev/fedora/root
 # lvcreate -l +100%FREE -n ceph fedora
 ```
 
+* **Reduce Logical Volume**
+```
+# xfs_repair /dev/mapper/sotolito-var
+# mount /dev/mapper/sotolito-var /mnt
+# xfsdump -f var-backpu.dump /mnt
+# lvreduce -L 80G /dev/mapper/sotolito-var
+# mkfs.xfs -f /dev/mapper/sotolito-var
+# mount /dev/mapper/sotolito-var /mnt
+# xfsrestore -f var-backpu.dump /mnt
+```
+
+
 * **Copy ssh key to a host**
 
 ```
