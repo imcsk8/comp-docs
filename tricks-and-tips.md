@@ -268,3 +268,19 @@ If you have several ports:
 # firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT_direct 1 -p tcp --dport 7000:9000 -m state --state NEW -m recent --update --seconds 30 --hitcount 4 -j REJECT --reject-with tcp-reset
 # firewall-cmd --reload
 ```
+
+* **Podman Update**
+Upgrading podman might have some caveats, if this happens it might mean that the containers have to be migrated to the next version:
+To do run the `migrate` podman command for each user that has problems.
+```
+$ podman system migrate
+```
+It might be useful tu run this command in the scripts that run the podman containers.
+
+
+* **Podman Cleanup**
+Creating images and containers is a messy business, it's a good practice to cleanup the system to delete unused containers, pods, volumes and data.
+
+```
+$ podman system prune
+```
