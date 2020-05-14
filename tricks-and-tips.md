@@ -284,3 +284,18 @@ Creating images and containers is a messy business, it's a good practice to clea
 ```
 $ podman system prune
 ```
+
+* **Add Files to Nextcloud**
+
+You might already have uploaded files in your Nextcloud server, to make them available in your Nextcloud instance:
+
+Copy the files to the Nextcloud filesystem
+```
+# cp -rp space/* /var/www/nextcloud/data/<username>/files
+```
+
+Tell Nextcloud to reindex the files
+
+```
+# su www-data -c ./occ files:scan --path="/<username>/files"
+```
