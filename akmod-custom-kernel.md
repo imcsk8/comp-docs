@@ -71,7 +71,24 @@ linux-stable $ cp ../linux-5.7.001.tar.gz ~/rpmbuild/SOURCES/
 
 ## Modify source RPM
 
+```
+...
+%global baserelease rc7
+...
+%define base_sublevel 7
+...
+%define stable_update 0
+...
+%define rpmversion 5.%{upstream_sublevel}.0.imcsk8
+...
+```
+
 ### Create new kernel package
+
+```
+kernel $ cp -rp * ~/rpmbuild/SOURCES/
+kernel $ rpmbuild -ba kernel.spec
+```
 
 ## Custom akmod package
 
