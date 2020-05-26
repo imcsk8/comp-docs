@@ -299,3 +299,10 @@ Tell Nextcloud to reindex the files
 ```
 # su www-data -c ./occ files:scan --path="/<username>/files"
 ```
+
+* **Convert gif to mp4**
+You can create your awesome animated gifs using gimp and then convert them to mp4 using ffmpeg 
+
+```
+$ ffmpeg -i animated.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4
+```
