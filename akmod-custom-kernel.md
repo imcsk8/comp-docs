@@ -86,6 +86,8 @@ linux-stable $ cp ../linux-5.7.001.tar.gz ~/rpmbuild/SOURCES/
 ### Create new kernel package
 
 ```
+kernel $ sudo dnf install -y audit-libs-devel binutils-devel  java-devel libcap-devel libcap-ng-devel llvm-toolset net-too
+ls newt-devel numactl-devel pciutils-devel  perl perl-devel python3-devel python3-docutils xmlto xz-devel elfutils-devel
 kernel $ cp -rp * ~/rpmbuild/SOURCES/
 kernel $ rpmbuild -ba kernel.spec
 ```
