@@ -2,7 +2,7 @@
 
 Download the Fedora kernel package and the linux sources, configure them and create the RPM package.
 
-## Custom kernel creaton
+## Custom kernel creation
 
 ## Download kernel source RPM
 ### Using fedpkg
