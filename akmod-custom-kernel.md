@@ -71,6 +71,8 @@ linux-stable $ cp ../linux-5.7.001.tar.gz ~/rpmbuild/SOURCES/
 
 ## Modify source RPM
 
+Edit the `kernel.spec` file:
+
 ```
 ...
 %global baserelease rc7
@@ -91,6 +93,8 @@ ls newt-devel numactl-devel pciutils-devel  perl perl-devel python3-devel python
 kernel $ cp -rp * ~/rpmbuild/SOURCES/
 kernel $ rpmbuild -ba kernel.spec
 ```
+
+_There might be some patches that don't apply, just comment them in the kernel.spec file_
 
 ## Custom akmod package
 
