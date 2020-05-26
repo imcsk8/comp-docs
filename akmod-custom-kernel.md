@@ -11,6 +11,11 @@ Download the Fedora kernel package and the linux sources, configure them and cre
 $ fedpkg clone kernel
 ```
 
+### Using SRPM from repository
+```
+$ dnf download --source kernel
+```
+
 **Switch to your desired branch**
 
 ```
@@ -47,18 +52,22 @@ linux-stable $ make -j 4 bzImage && make -j 4 modules && mane modules_install
 ```
 
 #### Copy the new kernel configuration to the SRPM
+
 ```
 linux-stable $ cp .config ../kernel/kernel-x86_64-fedora.config
 ```
 
-
 ### Create a kernel tarball
 
 ```
-$ git archive --format=tar.gz --prefix=linux-5.7.001 -o ../linux-5.7.001.tar.gz v5.7.001
+linux-stable $ git archive --format=tar.gz --prefix=linux-5.7.001 -o ../linux-5.7.001.tar.gz v5.7.001
 ```
 
+### Copy the tarball to the rpm sources directory
 
+```
+linux-stable $ cp ../linux-5.7.001.tar.gz ~/rpmbuild/SOURCES/
+```
 
 ## Modify source RPM
 
