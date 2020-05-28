@@ -83,6 +83,8 @@ Edit the `kernel.spec` file:
 ...
 %define rpmversion 5.%{upstream_sublevel}.0.imcsk8
 ...
+%define buildid .local
+...
 ```
 
 ### Create new kernel package
@@ -91,7 +93,8 @@ Edit the `kernel.spec` file:
 kernel $ sudo dnf install -y audit-libs-devel binutils-devel  java-devel libcap-devel libcap-ng-devel llvm-toolset net-too
 ls newt-devel numactl-devel pciutils-devel  perl perl-devel python3-devel python3-docutils xmlto xz-devel elfutils-devel
 kernel $ cp -rp * ~/rpmbuild/SOURCES/
-kernel $ rpmbuild -ba kernel.spec
+kernel $ rpmbuild --define='fedora 31'  --define='dist .fc31' --without debug --target x86_64  -ba kernel.spec 2>&1 | tee 
+build.log
 ```
 
 _There might be some patches that don't apply, just comment them in the kernel.spec file_
