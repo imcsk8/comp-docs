@@ -306,3 +306,11 @@ You can create your awesome animated gifs using gimp and then convert them to mp
 ```
 $ ffmpeg -i animated.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4
 ```
+
+* **CentOS stream misteriously excluded packages**
+
+For some reason that i haven't had time to check some packages are excluded, to fix this add `module_hotfixes=True` to the repo file
+
+```
+echo "module_hotfixes=True" >> /etc/yum.repos.d/CentOS-AppStream.repo
+```
