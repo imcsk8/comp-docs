@@ -314,3 +314,9 @@ For some reason that i haven't had time to check some packages are excluded, to 
 ```
 echo "module_hotfixes=True" >> /etc/yum.repos.d/CentOS-AppStream.repo
 ```
+
+* **Convert vmdk image to qcow2**
+
+```
+$ qemu-img convert -f vmdk -O qcow2 WinDev2005Eval-disk1.vmdk WinDev2005Eval.VMware.qcow2
+```
