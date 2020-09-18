@@ -320,3 +320,9 @@ echo "module_hotfixes=True" >> /etc/yum.repos.d/CentOS-AppStream.repo
 ```
 $ qemu-img convert -f vmdk -O qcow2 WinDev2005Eval-disk1.vmdk WinDev2005Eval.VMware.qcow2
 ```
+
+or 
+
+```
+$ kvm-img convert -O qcow2 WinDev2005Eval-disk1.vmdk WinDev2005Eval.VMware.qcow2
+```
