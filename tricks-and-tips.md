@@ -331,5 +331,6 @@ $ kvm-img convert -O qcow2 WinDev2005Eval-disk1.vmdk WinDev2005Eval.VMware.qcow2
 
 ```
 
-~$ virt-customize
+~$ virt-customize -a Fedora-Cloud-Base-33-1.2.x86_64.raw --ssh-inject root:file:~/.ssh/id_rsa.pub \
+   --root-password password:prueba123 --uninstall cloud-init
 ```
