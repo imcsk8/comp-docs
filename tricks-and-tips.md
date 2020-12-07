@@ -326,3 +326,10 @@ or
 ```
 $ kvm-img convert -O qcow2 WinDev2005Eval-disk1.vmdk WinDev2005Eval.VMware.qcow2
 ```
+
+* **Change cloud image password**
+
+```
+
+~$ virt-customize
+```
