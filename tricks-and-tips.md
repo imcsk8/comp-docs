@@ -327,6 +327,26 @@ or
 $ kvm-img convert -O qcow2 WinDev2005Eval-disk1.vmdk WinDev2005Eval.VMware.qcow2
 ```
 
+* **Increase uid mappings for Podman**
+
+Systems like OpenShift use uid mappings on ranges out of the default Linux settings.
+
+
+**Increase uid and gid mappings for user namespace**
+```
+~# echo 1001189999 > /proc/sys/user/max_user_namespaces
+~# echo "youruser:100000:1001180000" >> /etc/subuid
+~# echo "youruser:100000:1001180000" >> /etc/subgid
+```
+
+**Reload the uid mappings for Podman**
+
+*as youruser*
+```
+~$ podman system migrate
+```
+
+
 * **Change cloud image password**
 
 ```
