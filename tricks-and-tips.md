@@ -354,3 +354,24 @@ Systems like OpenShift use uid mappings on ranges out of the default Linux setti
 ~$ virt-customize -a Fedora-Cloud-Base-33-1.2.x86_64.raw --ssh-inject root:file:~/.ssh/id_rsa.pub \
    --root-password password:prueba123 --uninstall cloud-init
 ```
+
+
+* **SELinux relabel directories**
+
+Don't disable SELinux!! Use it!!
+
+If you change the mariadb datadir you have to change the security context type of the 
+new directory
+
+If your're like me get the security context type of the orignal mariadb directory:
+```
+# ls -Z /var/lib/mysql
+system_u:object_r:mysqld_db_t:s0 aria_log.00000001  system_u:object_r:mysqld_db_t:s0 multi-master.info
+```
+
+Add the *mysqld_db_t* security context type to the new mariadb datadir
+```
+# chcon -R -v --type=mysqld_db_t pda_data1
+# semanage fcontext -a -t mysqld_db_t "/home/pda_data1(/.*)?"
+# systemctl restart mariadb
+```
