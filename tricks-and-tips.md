@@ -375,3 +375,10 @@ Add the *mysqld_db_t* security context type to the new mariadb datadir
 # semanage fcontext -a -t mysqld_db_t "/home/pda_data1(/.*)?"
 # systemctl restart mariadb
 ```
+
+
+* **Recover from XFS (sdX): Filesystem has duplicate UUID 784265cb-5bd6-4b1a-b575-4660b5be2cdd - can't mount**
+Sometimes when theres a power failure external disks with the XFS filesystem misbehave and rebooting is not an option, just ignore the UUID stuff for the session. This is temporary, the solution is to reboot the system.
+```
+mount -o nouuid /dev/sda1 /mnt
+```
