@@ -382,3 +382,12 @@ Sometimes when theres a power failure external disks with the XFS filesystem mis
 ```
 mount -o nouuid /dev/sda1 /mnt
 ```
+
+
+* ** Increasee OOM score to avoid being killed first when the kernel runs out of memory**
+
+/proc/<pid>/oom_score_adj allows tu increase or decrease the OOMKiller score: -1000 higest score (always use memory), 1000 lowest score (It will get killed with minimal memory usage)
+
+```
+echo -200 > /proc/5433/oom_score_adj
+```
