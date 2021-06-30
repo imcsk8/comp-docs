@@ -4,7 +4,7 @@ _K8s, OpenShift, PaaS, IaaS, WtfaaS_
 
 ## OpenShift
 
-* **Add user to corrent project**
+* **Add user to current project**
 ```
 $ oc adm policy add-role-to-user edit username
 ```
