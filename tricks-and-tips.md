@@ -411,6 +411,7 @@ $ vainfo
 ```
 
 * **Configure Firefox to use VAAPI acceleration**
+
 Go to `about:config` and set:  
 
 * `media.ffmpeg.vaapi.enabled`: **true**
@@ -418,4 +419,4 @@ Go to `about:config` and set:
  
 * **Configure Chrome to use VAAPI acceleration**
  
- Go to: `chrome://flags` and set: **Override software rendering list** to //Enabled//
+Go to: `chrome://flags` and set: **Override software rendering list** to //Enabled//
