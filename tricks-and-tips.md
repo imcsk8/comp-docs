@@ -396,7 +396,7 @@ echo -200 > /proc/5433/oom_score_adj
  
  Install:
  ```
- $ dnf install -y libva-utils intel-media-driver
+ # dnf install -y libva-utils intel-media-driver
   ```
  
  Set the LIBVA_DRIVER_NAME environment variable:
@@ -409,3 +409,13 @@ Test with:
 ```
 $ vainfo
 ```
+
+* **Configure Firefox to use VAAPI acceleration**
+Go to `about:config` and set:  
+
+* `media.ffmpeg.vaapi.enabled`: **true**
+* `media.navigator.mediadatadecoder_vpx_enabled`: **true**
+ 
+* **Configure Chrome to use VAAPI acceleration**
+ 
+ Go to: `chrome://flags` and set: **Override software rendering list** to //Enabled//
