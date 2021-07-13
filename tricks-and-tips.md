@@ -391,3 +391,21 @@ mount -o nouuid /dev/sda1 /mnt
 ```
 echo -200 > /proc/5433/oom_score_adj
 ```
+ 
+ * **Intel hardware acceleration**
+ 
+ Install:
+ ```
+ $ dnf install -y libva-utils intel-media-driver
+  ```
+ 
+ Set the LIBVA_DRIVER_NAME environment variable:
+
+```
+$ echo "LIBVA_DRIVER_NAME=iHD"  >> /etc/environment
+```
+
+Test with:
+```
+$ vainfo
+```
