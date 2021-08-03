@@ -420,3 +420,14 @@ Go to `about:config` and set:
 * **Configure Chrome to use VAAPI acceleration**
  
 Go to: `chrome://flags` and set: **Override software rendering list** to //Enabled//
+
+* Microsoft True Type fonts:
+
+From RPM Fustion install lpf-mscore-fonts`
+
+```
+$ lpf state
+$ lpf update
+```
+ 
+ https://github.com/leamas/lpf
