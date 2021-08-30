@@ -431,3 +431,9 @@ $ lpf update
 ```
  
  https://github.com/leamas/lpf
+ 
+* **Read SSL certificate**
+ 
+```
+ $ openssl x509 -in /etc/ssl/nginx/self_signed.crt -text -noout
+```
