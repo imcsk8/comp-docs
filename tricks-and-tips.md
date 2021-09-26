@@ -437,3 +437,9 @@ $ lpf update
 ```
  $ openssl x509 -in /etc/ssl/nginx/self_signed.crt -text -noout
 ```
+
+ * **Disable nextcloud maintenance mode**
+ ```
+ $ php occ maintenance:mode  --off
+ ```
+ 
