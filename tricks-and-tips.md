@@ -443,3 +443,9 @@ $ lpf update
  $ php occ maintenance:mode  --off
  ```
  
+  * **Show IP address on TTY**
+ 
+ ```
+ $ echo "Current IPv4 address \4" >> /etc/issue
+ ```
+
