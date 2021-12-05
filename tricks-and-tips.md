@@ -449,3 +449,8 @@ $ lpf update
  $ echo "Current IPv4 address \4" >> /etc/issue
  ```
 
+ * Create stereoscopic 3D image
+ 
+ ```
+  $ ffmpeg -y -i awesome_vide.mp4 -vf stereo3d=ar:arcd awesome_3d_video.mp4
+ ```
