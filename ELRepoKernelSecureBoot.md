@@ -1,6 +1,6 @@
 # ELRepo Kernel with SecureBoot
 
-
+## Install ELRepo Sebure Boot Key
 
 ```
 $ sudo -i
@@ -8,6 +8,13 @@ $ sudo -i
 # mokutil --import /etc/pki/elrepo/SECURE-BOOT-KEY-elrepo.org.der
 input password: 
 input password again: 
+```
+
+## Sign the kernel
+
+The kernel-ml package is not signed so we have to sign it.
+```
+
 ```
 
 Reboot the system an follow the steps to enroll the key.
