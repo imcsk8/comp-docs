@@ -454,3 +454,11 @@ $ lpf update
  ```
   $ ffmpeg -y -i awesome_vide.mp4 -vf stereo3d=ar:arcd awesome_3d_video.mp4
  ```
+
+ * Change a route metric
+ The metric in a route is the cost of following it, the lowest the metric is the 
+ preferred one.
+ 
+ ```
+ # ip route replace default via 192.168.1.1 metric 1
+ ```
