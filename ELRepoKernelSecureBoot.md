@@ -10,14 +10,24 @@ input password:
 input password again: 
 ```
 
-## Sign the kernel
+## Signing the kernel
 
 The kernel-ml package is not signed so we have to sign it.
+
+### Create the keys
+
+```
+TODO
 ```
 
+### Sign the kernel
+
+```
+TODO
 ```
 
 Reboot the system an follow the steps to enroll the key.
 
 ## References
 * http://elrepo.org/tiki/SecureBootKey
+* https://qastack.mx/ubuntu/1081472/vmlinuz-4-18-12-041812-generic-has-invalid-signature
