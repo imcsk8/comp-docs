@@ -1,5 +1,17 @@
 # Ceph notes
 
+# Installation using Ceph Ansible
+
+### OSDs
+
+Ceph Ansible uses the `lvm` scenario which requires disks with clean partition tables.
+
+* To clean parition tables from `/dev/sdb`:
+
+```
+# wipefs -a  -f  /dev/sdb
+```
+
 ## Open ports using firewalld
 
 ### Monitors
