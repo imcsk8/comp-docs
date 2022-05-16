@@ -462,3 +462,9 @@ $ lpf update
  ```
  # ip route replace default via 192.168.1.1 metric 1
  ```
+
+* Show available versions of a package
+ 
+ ```
+ $ dnf --showduplicates list php
+ ```
