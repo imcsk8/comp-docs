@@ -440,7 +440,7 @@ $ lpf update
 
  * **Disable nextcloud maintenance mode**
  ```
- $ php occ maintenance:mode  --off
+ $ php occ maintenance:mode  --offhttps://www.google.com/search?client=firefox-b-d&q=comp-docs
  ```
  
   * **Show IP address on TTY**
@@ -468,3 +468,11 @@ $ lpf update
  ```
  $ dnf --showduplicates list php
  ```
+
+* Increase dnf efficiency
+
+Add this lines to `/etc/dnf/dnf.conf`
+```
+max_parallel_downloads=20
+fastestmirror=True
+```
