@@ -103,3 +103,5 @@ In order to keep things clean we'll create a new zone for our Wireguard VPN
 
 # References
 * https://fedoramagazine.org/configure-wireguard-vpns-with-networkmanager/
+* https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes
+* 
