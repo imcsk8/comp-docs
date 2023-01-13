@@ -80,7 +80,7 @@ In order to keep things clean we'll create a new zone for our Wireguard VPN
 # firewall-cmd  --new-zone=wireguard --permanent
 ```
 
-**Remove the wireguard interface to the public zone**
+**Remove the wireguard interface from the public zone**
 ```bash
 # firewall-cmd  --zone=public --remove-interface=sotolito --permanent
 ```
