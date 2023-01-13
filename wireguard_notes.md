@@ -71,6 +71,35 @@ EOF
 # nmcli con import type wireguard file /etc/wireguard/wg0.conf
 ```
 
+### Create Firewalld Zone
+
+In order to keep things clean we'll create a new zone for our Wireguard VPN
+
+**Create the zone**
+```bash
+# firewall-cmd  --new-zone=wireguard --permanent
+```
+
+**Remove the wireguard interface to the public zone**
+```bash
+# firewall-cmd  --zone=public --remove-interface=sotolito --permanent
+```
+
+**Add the wireguard interface to the zone**
+```bash
+# firewall-cmd  --zone=wireguard --add-interface=wg0 --permanent
+```
+
+**Allow forwarding to the zone**
+```bash
+# firewall-cmd --zone=wireguard --add-forward --permanent
+```
+
+**Don't forget to reload baby!!**
+```bash
+# firewall-cmd --reload
+```
+
 
 # References
 * https://fedoramagazine.org/configure-wireguard-vpns-with-networkmanager/
