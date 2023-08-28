@@ -37,9 +37,22 @@ Build the RPM
 $ rpmbuild -ba ~/rpmbuild/SPECS/libvirt.spec
 ```
 
+Remove current libvirt if installed.
+
+```
+$ sudo dnf erase -y libvirt
+```
+
 Install `libvirt-driver-lxc`
 
 ```bash
-$ cd ~/rpmbuild//RPMS/x86_64/
-$ sudo dnf install -y libvirt-daemon-driver-lxc-9.6.0-1.el9.x86_64.rpm
+$ cd ~/rpmbuild/RPMS/x86_64/
+$ sudo dnf install -y libvirt-daemon-driver-lxc-9.6.0-1.el9.x86_64.rpm \
+  libvirt-daemon-common-9.6.0-1.el9.x86_64.rpm \
+  libvirt-daemon-driver-network-9.6.0-1.el9.x86_64.rpm \
+  libvirt-libs-9.6.0-1.el9.x86_64.rpm \
+  libvirt-libs-9.6.0-1.el9.x86_64.rpm \
+  libvirt-daemon-driver-storage-rbd-9.6.0-1.el9.x86_64.rpm \
+  libvirt-daemon-driver-storage-core-9.6.0-1.el9.x86_64.rpm
 ```
+
