@@ -5,7 +5,19 @@
 CentOS 9 Stream does not ship the `libvirt-daemon-lxc` and `libvirt-daemon-driver-lxc` driver.
 Download the SRPM package from Fedora https://koji.fedoraproject.org/koji/buildinfo?buildID=2267746
 
-Install the SRPM and edit the spec file. In the spec file set the `with_lxc` variable to 1.
+Install the build dependencies
+```
+$ sudo dnf builddep libvirt-9.6.0-1.fc39.src.rpm
+```
+
+Install the SRPM 
+
+```
+$ rpm --install libvirt-9.6.0-1.fc39.src.rpm
+```
+
+Edit the spec file: set the `with_lxc` variable to 1.
+
 
 ```
 # RHEL doesn't ship many hypervisor drivers
