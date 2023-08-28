@@ -16,8 +16,7 @@ Install the SRPM
 $ rpm --install libvirt-9.6.0-1.fc39.src.rpm
 ```
 
-Edit the spec file: set the `with_lxc` variable to 1.
-
+Edit the spec `~/rpmbuild/SPECS/libvirt.spec` file: set the `with_lxc` variable to 1.
 
 ```
 # RHEL doesn't ship many hypervisor drivers
@@ -30,4 +29,10 @@ Edit the spec file: set the `with_lxc` variable to 1.
     %define with_vz 0
     %define with_lxc 1
 %endif
+```
+
+Build the RPM
+
+```
+$ rpmbuild -ba ~/rpmbuild/SPECS/libvirt.spec
 ```
