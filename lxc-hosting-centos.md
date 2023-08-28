@@ -41,5 +41,5 @@ Install `libvirt-driver-lxc`
 
 ```bash
 $ cd ~/rpmbuild//RPMS/x86_64/
-$ dnf install -y libvirt-daemon-driver-lxc
+$ sudo dnf install -y libvirt-daemon-driver-lxc-9.6.0-1.el9.x86_64.rpm
 ```
