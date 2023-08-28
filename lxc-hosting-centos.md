@@ -6,13 +6,13 @@ CentOS 9 Stream does not ship the `libvirt-daemon-lxc` and `libvirt-daemon-drive
 Download the SRPM package from Fedora https://koji.fedoraproject.org/koji/buildinfo?buildID=2267746
 
 Install the build dependencies
-```
+```bash
 $ sudo dnf builddep libvirt-9.6.0-1.fc39.src.rpm
 ```
 
 Install the SRPM 
 
-```
+```bash
 $ rpm --install libvirt-9.6.0-1.fc39.src.rpm
 ```
 
@@ -33,6 +33,13 @@ Edit the spec `~/rpmbuild/SPECS/libvirt.spec` file: set the `with_lxc` variable 
 
 Build the RPM
 
-```
+```bash
 $ rpmbuild -ba ~/rpmbuild/SPECS/libvirt.spec
+```
+
+Install `libvirt-driver-lxc`
+
+```bash
+$ cd ~/rpmbuild//RPMS/x86_64/
+$ dnf install -y libvirt-daemon-driver-lxc
 ```
