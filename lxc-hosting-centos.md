@@ -47,12 +47,27 @@ Install `libvirt-driver-lxc`
 
 ```bash
 $ cd ~/rpmbuild/RPMS/x86_64/
-$ sudo dnf install -y libvirt-daemon-driver-lxc-9.6.0-1.el9.x86_64.rpm \
-  libvirt-daemon-common-9.6.0-1.el9.x86_64.rpm \
-  libvirt-daemon-driver-network-9.6.0-1.el9.x86_64.rpm \
-  libvirt-libs-9.6.0-1.el9.x86_64.rpm \
-  libvirt-libs-9.6.0-1.el9.x86_64.rpm \
-  libvirt-daemon-driver-storage-rbd-9.6.0-1.el9.x86_64.rpm \
+$ sudo dnf install -y libvirt-daemon-9.6.0-1.el9.x86_64.rpm \
+  libvirt-daemon-lock-9.6.0-1.el9.x86_64.rpm                \ 
+  libvirt-daemon-log-9.6.0-1.el9.x86_64.rpm                 \
+  libvirt-daemon-plugin-lockd-9.6.0-1.el9.x86_64.rpm        \
+  libvirt-daemon-proxy-9.6.0-1.el9.x86_64.rpm               \
+  libvirt-daemon-driver-lxc-9.6.0-1.el9.x86_64.rpm          \
+  libvirt-daemon-common-9.6.0-1.el9.x86_64.rpm              \
+  libvirt-daemon-driver-network-9.6.0-1.el9.x86_64.rpm      \
+  libvirt-libs-9.6.0-1.el9.x86_64.rpm                       \
+  libvirt-libs-9.6.0-1.el9.x86_64.rpm                       \
+  libvirt-daemon-driver-storage-rbd-9.6.0-1.el9.x86_64.rpm  \
   libvirt-daemon-driver-storage-core-9.6.0-1.el9.x86_64.rpm
 ```
 
+Create the `vps` user. This user will create the containers and run them. You can also create a user for each VPS container, just add it to the `libvirt` group.
+
+```
+$ sudo useradd -m -g vps -G libvirt -c 'VPS user' -d /home/vps vps
+```
+
+
+# References
+* https://koji.fedoraproject.org/koji/buildinfo?buildID=2267746
+* https://kojipkgs.fedoraproject.org//packages/virt-bootstrap/1.1.1/20.fc39/src/virt-bootstrap-1.1.1-20.fc39.src.rpm
