@@ -10,7 +10,7 @@ Install the build dependencies
 $ sudo dnf builddep libvirt-9.6.0-1.fc39.src.rpm
 ```
 
-Install the SRPM 
+Install the libvirt SRPM 
 
 ```bash
 $ rpm --install libvirt-9.6.0-1.fc39.src.rpm
@@ -61,10 +61,50 @@ $ sudo dnf install -y libvirt-daemon-9.6.0-1.el9.x86_64.rpm \
   libvirt-daemon-driver-storage-core-9.6.0-1.el9.x86_64.rpm
 ```
 
+Download the virt-bootstrap SRPM:
+
+```
+$ wget https://kojipkgs.fedoraproject.org//packages/virt-bootstrap/1.1.1/20.fc39/src/virt-bootstrap-1.1.1-20.fc39.src.rpm
+```
+
+Build the SRPM:
+
+```
+$ rpmbuild --rebuild virt-bootstrap-1.1.1-20.fc39.src.rpm
+```
+
+Install the virt-bootstrap package:
+
+```
+$ sudo dnf install -y virt-bootstrap-1.1.1-20.fc39.rpm
+```
+
 Create the `vps` user. This user will create the containers and run them. You can also create a user for each VPS container, just add it to the `libvirt` group.
 
 ```
 $ sudo useradd -m -g vps -G libvirt -c 'VPS user' -d /home/vps vps
+```
+
+Create a sudo entry to enable the `vps` user to copy files.
+
+```
+cat <<EOF > /etc/sudoers.d/vps
+> Cmnd_Alias VPS = /bin/cp, /bin/rm
+%vps    ALL=(ALL) NOPASSWD: VPS
+EOF
+```
+
+Create an image template from a OCI container image using the [vpsctl](https://github.com/SotolitoLabs/sotolito-vps/blob/master/imgctl) script:
+
+```
+$ imgctl generate centos:stream9
+$ ln -s centos:stream9 sotolito-vps-base
+```
+
+Copy the template to a new directory for the container image:
+
+```
+$ sudo cp -rp sotolito-vps-base testlxc
 ```
 
 
