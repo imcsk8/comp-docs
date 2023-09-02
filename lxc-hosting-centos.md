@@ -113,8 +113,13 @@ Set the VIRSH_DEFAULT_CONNECT_URI variable to use the global libvirt settings:
 $ export VIRSH_DEFAULT_CONNECT_URI=lxc:///system
 ```
 
+Start the container:
 
+```
+$ virsh start testlxc
+```
 
 # References
+* https://libvirt.org/drvlxc.html
 * https://koji.fedoraproject.org/koji/buildinfo?buildID=2267746
 * https://kojipkgs.fedoraproject.org//packages/virt-bootstrap/1.1.1/20.fc39/src/virt-bootstrap-1.1.1-20.fc39.src.rpm
