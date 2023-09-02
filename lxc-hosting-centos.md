@@ -119,6 +119,35 @@ Set the VIRSH_DEFAULT_CONNECT_URI variable to use the global libvirt settings:
 $ export VIRSH_DEFAULT_CONNECT_URI=lxc:///system
 ```
 
+Create the container libvirt domain file, the following can be used as starting point:
+
+```
+<domain type='lxc'>
+    <name>test-container</name>
+    <memory unit='KiB'>512</memory>
+    <os>
+        <type>exe</type>
+        <init>/usr/sbin/init</init>
+    </os>
+    <devices>
+        <console type='pty'/>
+        <filesystem type='mount' accessmode='passthrough'>
+            <source dir='PATH_TO_YOUR/rootfs'/>
+            <target dir='/'/>
+        </filesystem>
+        <interface type='network'>
+            <source network='default'/>
+        </interface>
+    </devices>
+</domain>
+```
+
+Add the domain to libvirt:
+
+```
+$ virsh define testdomain.xml
+```
+
 Start the container:
 
 ```
