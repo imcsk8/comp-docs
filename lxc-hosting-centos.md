@@ -107,6 +107,11 @@ Copy the template to a new directory for the container image:
 $ sudo cp -rp sotolito-vps-base testlxc
 ```
 
+Set the VIRSH_DEFAULT_CONNECT_URI variable to use the global libvirt settings:
+
+```
+$ export VIRSH_DEFAULT_CONNECT_URI=lxc:///system
+```
 
 # References
 * https://koji.fedoraproject.org/koji/buildinfo?buildID=2267746
