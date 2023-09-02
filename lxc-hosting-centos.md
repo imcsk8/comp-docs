@@ -94,6 +94,12 @@ cat <<EOF > /etc/sudoers.d/vps
 EOF
 ```
 
+Create a CentOS Stream 9 OCI container image with systemd:
+
+```
+$ podman build --cgroup-manager cgroupfs -t sotolito-vps-base:1.0.0-centos9 .
+```
+
 Create an image template from a OCI container image using the [vpsctl](https://github.com/SotolitoLabs/sotolito-vps/blob/master/imgctl) script:
 
 ```
