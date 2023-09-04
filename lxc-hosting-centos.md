@@ -122,24 +122,57 @@ $ export VIRSH_DEFAULT_CONNECT_URI=lxc:///system
 Create the container libvirt domain file, the following can be used as starting point:
 
 ```
-<domain type='lxc'>
-    <name>test-container</name>
-    <memory unit='KiB'>512</memory>
-    <os>
-        <type>exe</type>
-        <init>/usr/sbin/init</init>
-    </os>
-    <devices>
-        <console type='pty'/>
-        <filesystem type='mount' accessmode='passthrough'>
-            <source dir='PATH_TO_YOUR/rootfs'/>
-            <target dir='/'/>
-        </filesystem>
-        <interface type='network'>
-            <source network='default'/>
-        </interface>
-    </devices>
-</domain>
+<domain type='lxc'>                                                                                                                                                                                                
+  <name>test-lxc-virtman</name>                                                                                                                                                                                    
+  <uuid>e21bd347-b8b9-4c56-8c2c-64e968b95167</uuid>                                                                                     
+  <memory unit='KiB'>524288</memory>                                                                                                    
+  <currentMemory unit='KiB'>524288</currentMemory>                                                                                      
+  <vcpu placement='static'>1</vcpu>                 
+  <resource>                                        
+    <partition>/machine</partition>                 
+  </resource>                                       
+  <os>                                              
+    <type arch='x86_64'>exe</type>                  
+    <init>/sbin/init</init>                         
+  </os>                                                                                                  
+  <features>                                        
+    <privnet/>                                      
+  </features>                                       
+  <clock offset='utc'/>                                                                                  
+  <on_poweroff>destroy</on_poweroff>                                                                     
+  <on_reboot>restart</on_reboot>                                                                         
+  <on_crash>destroy</on_crash>                      
+  <devices>                                         
+    <emulator>/usr/libexec/libvirt_lxc</emulator>                                                        
+    <filesystem type='mount' accessmode='mapped'>                                                        
+      <source dir='/home/vservers/OCI-Image-Bundles/testlxc/rootfs'/>                                                                   
+      <target dir='/'/>                             
+    </filesystem>                                                                                        
+    <filesystem type='mount' accessmode='mapped'>                                                        
+      <source dir='/home/vservers/OCI-Image-Bundles/testlxc/etc'/>                                                                      
+      <target dir='/etc'/>                          
+    </filesystem>                                                                                        
+    <filesystem type='mount' accessmode='mapped'>                                                        
+      <source dir='/home/vservers/OCI-Image-Bundles/testlxc/var'/>                                       
+      <target dir='/var'/>                          
+    </filesystem>                                                                                        
+    <filesystem type='mount' accessmode='mapped'>                                                        
+      <source dir='/home/vservers/OCI-Image-Bundles/testlxc/html'/>                                                                     
+      <target dir='/usr/share/nginx/html'/>                                                                                             
+    </filesystem>                                   
+    <filesystem type='mount' accessmode='mapped'>                                                        
+      <source dir='/home/vservers/OCI-Image-Bundles/testlxc/home'/>                                                                     
+      <target dir='/home'/>                         
+    </filesystem>                                   
+    <interface type='network'>                      
+      <mac address='00:16:3e:e8:57:5a'/>                                                                                                
+      <source network='default'/>                   
+    </interface>                                    
+    <console type='pty'>                                            
+      <target type='lxc' port='0'/>                 
+    </console>                                                      
+  </devices>                                                        
+</domain> 
 ```
 
 Add the domain to libvirt:
