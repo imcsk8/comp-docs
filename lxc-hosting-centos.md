@@ -58,7 +58,18 @@ $ sudo dnf install -y libvirt-daemon-9.6.0-1.el9.x86_64.rpm \
   libvirt-libs-9.6.0-1.el9.x86_64.rpm                       \
   libvirt-libs-9.6.0-1.el9.x86_64.rpm                       \
   libvirt-daemon-driver-storage-rbd-9.6.0-1.el9.x86_64.rpm  \
-  libvirt-daemon-driver-storage-core-9.6.0-1.el9.x86_64.rpm
+  libvirt-daemon-driver-storage-core-9.6.0-1.el9.x86_64.rpm \
+  libvirt-daemon-driver-interface-9.6.0-1.el9.x86_64.rpm    \
+  libvirt-daemon-driver-nodedev-9.6.0-1.el9.x86_64.rpm      \
+  libvirt-daemon-driver-nwfilter-9.6.0-1.el9.x86_64.rpm     \
+  libvirt-daemon-driver-storage-9.6.0-1.el9.x86_64.rpm      \
+  libvirt-daemon-lxc-9.6.0-1.el9.x86_64.rpm                 \
+  libvirt-daemon-driver-storage-disk-9.6.0-1.el9.x86_64.rpm  \
+  libvirt-daemon-driver-storage-iscsi-9.6.0-1.el9.x86_64.rpm \
+  libvirt-daemon-driver-storage-logical-9.6.0-1.el9.x86_64.rpm \
+  libvirt-daemon-driver-storage-mpath-9.6.0-1.el9.x86_64.rpm   \
+  libvirt-daemon-driver-storage-scsi-9.6.0-1.el9.x86_64.rpm    \
+  systemd-container
 ```
 
 Download the virt-bootstrap SRPM:
