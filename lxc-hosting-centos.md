@@ -39,7 +39,7 @@ $ rpmbuild -ba ~/rpmbuild/SPECS/libvirt.spec
 
 Remove current libvirt if installed.
 
-```
+```bash
 $ sudo dnf erase -y libvirt
 ```
 
@@ -63,31 +63,31 @@ $ sudo dnf install -y libvirt-daemon-9.6.0-1.el9.x86_64.rpm \
 
 Download the virt-bootstrap SRPM:
 
-```
+```bash
 $ wget https://kojipkgs.fedoraproject.org//packages/virt-bootstrap/1.1.1/20.fc39/src/virt-bootstrap-1.1.1-20.fc39.src.rpm
 ```
 
 Build the SRPM:
 
-```
+```bash
 $ rpmbuild --rebuild virt-bootstrap-1.1.1-20.fc39.src.rpm
 ```
 
 Install the virt-bootstrap package:
 
-```
+```bash
 $ sudo dnf install -y virt-bootstrap-1.1.1-20.fc39.rpm
 ```
 
 Create the `vps` user. This user will create the containers and run them. You can also create a user for each VPS container, just add it to the `libvirt` group.
 
-```
+```bash
 $ sudo useradd -m -g vps -G libvirt -c 'VPS user' -d /home/vps vps
 ```
 
 Create a sudo entry to enable the `vps` user to copy files.
 
-```
+```bash
 cat <<EOF > /etc/sudoers.d/vps
 > Cmnd_Alias VPS = /bin/cp, /bin/rm
 %vps    ALL=(ALL) NOPASSWD: VPS
@@ -96,32 +96,32 @@ EOF
 
 Create a CentOS Stream 9 OCI container image with systemd:
 
-```
+```bash
 $ podman build --cgroup-manager cgroupfs -t sotolito-vps-base:1.0.0-centos9 .
 ```
 
 Create an image template from a OCI container image using the [vpsctl](https://github.com/SotolitoLabs/sotolito-vps/blob/master/imgctl) script:
 
-```
+```bash
 $ imgctl generate sotolito-vps-base:1.0.0-centos9
 $ ln -s centos:stream9 sotolito-vps-base
 ```
 
 Copy the template to a new directory for the container image:
 
-```
+```bash
 $ sudo cp -rp sotolito-vps-base testlxc
 ```
 
 Set the VIRSH_DEFAULT_CONNECT_URI variable to use the global libvirt settings:
 
-```
+```bash
 $ export VIRSH_DEFAULT_CONNECT_URI=lxc:///system
 ```
 
 Create the container libvirt domain file, the following can be used as starting point:
 
-```
+```bash
 <domain type='lxc'>                                                                                                                                                                                                
   <name>test-lxc-virtman</name>                                                                                                                                                                                    
   <uuid>e21bd347-b8b9-4c56-8c2c-64e968b95167</uuid>                                                                                     
@@ -177,13 +177,13 @@ Create the container libvirt domain file, the following can be used as starting 
 
 Add the domain to libvirt:
 
-```
+```bash
 $ virsh define testdomain.xml
 ```
 
 Start the container:
 
-```
+```bash
 $ virsh start testlxc
 ```
 
