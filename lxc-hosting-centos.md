@@ -103,7 +103,7 @@ $ podman build --cgroup-manager cgroupfs -t sotolito-vps-base:1.0.0-centos9 .
 Create an image template from a OCI container image using the [vpsctl](https://github.com/SotolitoLabs/sotolito-vps/blob/master/imgctl) script:
 
 ```
-$ imgctl generate centos:stream9
+$ imgctl generate sotolito-vps-base:1.0.0-centos9
 $ ln -s centos:stream9 sotolito-vps-base
 ```
 
