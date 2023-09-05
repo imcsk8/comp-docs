@@ -133,73 +133,110 @@ $ export VIRSH_DEFAULT_CONNECT_URI=lxc:///system
 Create the container libvirt domain file, the following can be used as starting point:
 
 ```bash
-<domain type='lxc'>                                                                                                                                                                                                
-  <name>test-lxc-virtman</name>                                                                                                                                                                                    
-  <uuid>e21bd347-b8b9-4c56-8c2c-64e968b95167</uuid>                                                                                     
-  <memory unit='KiB'>524288</memory>                                                                                                    
-  <currentMemory unit='KiB'>524288</currentMemory>                                                                                      
-  <vcpu placement='static'>1</vcpu>                 
-  <resource>                                        
-    <partition>/machine</partition>                 
-  </resource>                                       
-  <os>                                              
-    <type arch='x86_64'>exe</type>                  
-    <init>/sbin/init</init>                         
-  </os>                                                                                                  
-  <features>                                        
-    <privnet/>                                      
-  </features>                                       
-  <clock offset='utc'/>                                                                                  
-  <on_poweroff>destroy</on_poweroff>                                                                     
-  <on_reboot>restart</on_reboot>                                                                         
-  <on_crash>destroy</on_crash>                      
-  <devices>                                         
-    <emulator>/usr/libexec/libvirt_lxc</emulator>                                                        
-    <filesystem type='mount' accessmode='mapped'>                                                        
-      <source dir='/home/vservers/OCI-Image-Bundles/testlxc/rootfs'/>                                                                   
-      <target dir='/'/>                             
-    </filesystem>                                                                                        
-    <filesystem type='mount' accessmode='mapped'>                                                        
-      <source dir='/home/vservers/OCI-Image-Bundles/testlxc/etc'/>                                                                      
-      <target dir='/etc'/>                          
-    </filesystem>                                                                                        
-    <filesystem type='mount' accessmode='mapped'>                                                        
-      <source dir='/home/vservers/OCI-Image-Bundles/testlxc/var'/>                                       
-      <target dir='/var'/>                          
-    </filesystem>                                                                                        
-    <filesystem type='mount' accessmode='mapped'>                                                        
-      <source dir='/home/vservers/OCI-Image-Bundles/testlxc/html'/>                                                                     
-      <target dir='/usr/share/nginx/html'/>                                                                                             
-    </filesystem>                                   
-    <filesystem type='mount' accessmode='mapped'>                                                        
-      <source dir='/home/vservers/OCI-Image-Bundles/testlxc/home'/>                                                                     
-      <target dir='/home'/>                         
-    </filesystem>                                   
-    <interface type='network'>                      
-      <mac address='00:16:3e:e8:57:5a'/>                                                                                                
-      <source network='default'/>                   
-    </interface>                                    
-    <console type='pty'>                                            
-      <target type='lxc' port='0'/>                 
-    </console>                                                      
-  </devices>                                                        
-</domain> 
+<domain type='lxc'>
+  <name>vps-template</name>                                                                                                                       
+  <memory unit='KiB'>524288</memory>                                                                                                              
+  <currentMemory unit='KiB'>524288</currentMemory>                                                                                                
+  <vcpu placement='static'>1</vcpu>                                                                                                               
+  <resource>                                                                                                                                      
+    <partition>/machine</partition>                                                                                                               
+  </resource>                                                                                                                                     
+  <os>                                                                                                                                            
+    <type arch='x86_64'>exe</type>                                                                                                                
+    <init>/sbin/init</init>                                                                                                                       
+    <initenv name='container'>lxc-vps</initenv>                                                                                                   
+  </os>                                                                                                                                           
+  <idmap>                                                                                                                                         
+    <uid start='0' target='65537' count='1001180000'/>                                                                                            
+    <gid start='0' target='65535' count='1001180000'/>                                                                                            
+  </idmap>                                                                                                                                        
+  <features>                                                                                                                                      
+    <privnet/>                                                                                                                                    
+    <capabilities policy='default'>                                                                                                               
+      <mknod state='on'/>                                                                                                                         
+      <sys_admin state='on'/>                                                                                                                     
+    </capabilities>                                                                                                                               
+  </features>                                                                                                                                     
+  <clock offset='utc'/>                                                                                                                           
+  <on_poweroff>destroy</on_poweroff> 
+  <on_reboot>restart</on_reboot>
+  <on_crash>destroy</on_crash>
+<devices>
+    <emulator>/usr/libexec/libvirt_lxc</emulator>
+    <filesystem type='mount' accessmode='squash'>
+      <source dir='/home/vservers/OCI-Image-Bundles/sotolito-vps-web:1.0.0-centos9/rootfs'/>
+      <target dir='/'/>
+    </filesystem>
+    <filesystem type='mount' accessmode='squash'>
+      <source dir='/home/vservers/OCI-Image-Bundles/sotolito-vps-web:1.0.0-centos9/etc'/>
+      <target dir='/etc'/>
+    </filesystem>
+    <filesystem type='mount' accessmode='squash'>
+      <source dir='/home/vservers/OCI-Image-Bundles/sotolito-vps-web:1.0.0-centos9/var'/>
+      <target dir='/var'/>
+    </filesystem>
+    <filesystem type='mount' accessmode='squash'>
+      <source dir='/home/vservers/OCI-Image-Bundles/sotolito-vps-web:1.0.0-centos9/html'/>
+      <target dir='/usr/share/nginx/html'/>
+    </filesystem>
+    <filesystem type='mount' accessmode='squash'>
+      <source dir='/home/vservers/OCI-Image-Bundles/sotolito-vps-web:1.0.0-centos9/home'/>
+      <target dir='/home'/>
+    </filesystem>
+    <interface type='network'>
+      <mac address='52:54:00:f8:08:1d'/>
+      <source network='default' portid='8b55da8a-73c1-4ccc-9a68-69cf5d3bdfad' bridge='virbr0'/>
+      <target dev='vnet18'/>
+      <guest dev='eth0'/>
+    </interface>
+    <console type='pty' tty='/dev/pts/5'>
+      <source path='/dev/pts/5'/>
+      <target type='lxc' port='0'/>
+      <alias name='console0'/>
+    </console>
+  </devices>
+</domain>
+```
+
+To add a static IP addrees create a NetworkManager connection for the address range that is managed by libvirt, generally 
+you can get this by checking out the `virbr0` interface IP:
+
+```
+$ ip addr show virbr0
+14: virbr0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 52:54:00:b8:7f:2f brd ff:ff:ff:ff:ff:ff
+    *inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0*
+       valid_lft forever preferred_lft forever
+```
+
+Create the new Network Manager connection with the `nmcli` command and send the output to a file
+in the `<VPS_DIRECTORY>/etc/NetworkManager/system-connections` directory. 
+Notice that the `etc` directory is the one that gets mounted in `/etc` inside the container (libvirt domain).
+
+```
+$ nmcli --offline connection add type ethernet con-name lxc-vps \
+  ipv4.addresses 192.168.122.2/24 ipv4.dns 192.168.122.1       \
+  ipv4.method manual > <PATH_TO_VPS_DIRECTORY>/etc/NetworkManager/system-connections/lxc-vps.nmconnection
+$ chmod 600 <PATH_TO_VPS_DIRECTORY>/etc/NetworkManager/system-connections/lxc-vps.nmconnection
 ```
 
 Add the domain to libvirt:
 
 ```bash
-$ virsh define testdomain.xml
+$ virsh define vps-template.xml
 ```
 
 Start the container:
 
 ```bash
-$ virsh start testlxc
+$ virsh start vps-template
 ```
+
+Do whatever you do with VPSs, be happy and have a beer or a coffee
 
 # References
 * https://libvirt.org/drvlxc.html
 * https://koji.fedoraproject.org/koji/buildinfo?buildID=2267746
 * https://kojipkgs.fedoraproject.org//packages/virt-bootstrap/1.1.1/20.fc39/src/virt-bootstrap-1.1.1-20.fc39.src.rpm
 * https://systemd.io/CONTAINER_INTERFACE/
+* https://man7.org/linux/man-pages/man7/user_namespaces.7.html
