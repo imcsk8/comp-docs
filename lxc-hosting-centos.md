@@ -198,6 +198,8 @@ Create the container libvirt domain file, the following can be used as starting 
 </domain>
 ```
 
+Notice that with `<sys_admin state='on'/>` we're enableing `CAP_SYS_ADMIN` but only in the user namespace in which the VPS container runs.
+
 To add a static IP addrees create a NetworkManager connection for the address range that is managed by libvirt, generally 
 you can get this by checking out the `virbr0` interface IP:
 
@@ -226,12 +228,17 @@ Add the domain to libvirt:
 $ virsh define vps-template.xml
 ```
 
-Start the container:
+Start the container with a normal user:
 
 ```bash
-$ virsh start vps-template
+vps@hosting $ virsh start vps-template
 ```
 
+This gives us a nice rootless VPS container:
+
+![Captura de pantalla de 2023-09-05 11-54-39](https://github.com/imcsk8/comp-docs/assets/84400/4377c95e-b9fe-40b5-91c4-05ee9b0e0238)
+
+Finally:
 Do whatever you do with VPSs, be happy and have a beer or a coffee
 
 # References
