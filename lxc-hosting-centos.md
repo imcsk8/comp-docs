@@ -184,10 +184,7 @@ Create the container libvirt domain file, the following can be used as starting 
       <target dir='/home'/>
     </filesystem>
     <interface type='network'>
-      <mac address='52:54:00:f8:08:1d'/>
-      <source network='default' portid='8b55da8a-73c1-4ccc-9a68-69cf5d3bdfad' bridge='virbr0'/>
-      <target dev='vnet18'/>
-      <guest dev='eth0'/>
+      <source network='default' bridge='virbr0'/>
     </interface>
     <console type='pty' tty='/dev/pts/5'>
       <source path='/dev/pts/5'/>
