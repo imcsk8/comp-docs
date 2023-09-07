@@ -123,6 +123,23 @@ Create a new bridged network managed by libvirt:
 </network>
 ```
 
+Libvirt creates a zone called `libvirt-routed` for the bridge inteface `virbr1`, so we have to add firewall rules 
+to allow ssh traffic to the VPS containers:
+
+With firewalld-cmd:
+
+Allow forwarding traffic to the VPS container network.
+
+```bash
+# firewall-cmd --permanent --zone=libvirt-routed --add-forward
+```
+
+Enable the ssh service to the zone:
+
+```bash
+# firewall-cmd --permanent --add-service=ssh --zone=libvirt-routed
+```
+
 Create a CentOS Stream 9 OCI container image with systemd:
 
 ```bash
@@ -254,6 +271,13 @@ vps@hosting $ virsh start vps-template
 This gives us a nice rootless VPS container:
 
 ![Captura de pantalla de 2023-09-05 11-54-39](https://github.com/imcsk8/comp-docs/assets/84400/4377c95e-b9fe-40b5-91c4-05ee9b0e0238)
+
+Enable ssh traffic from the internet to the VPS container:
+
+```bash
+# firewall-cmd --permanent --zone="public" --add-forward-port=port=2222:proto=tcp:toport=22:toaddr=192.168.100.3
+```
+
 
 Finally:
 Do whatever you do with VPSs, be happy and have a beer or a coffee
