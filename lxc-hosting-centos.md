@@ -140,6 +140,12 @@ Enable the ssh service to the zone:
 # firewall-cmd --permanent --add-service=ssh --zone=libvirt-routed
 ```
 
+Rules created with the `--permanent` option need a reload:
+
+```bash
+# firewall-cmd --reload
+```
+
 Create a CentOS Stream 9 OCI container image with systemd:
 
 ```bash
@@ -276,6 +282,7 @@ Enable ssh traffic from the internet to the VPS container:
 
 ```bash
 # firewall-cmd --permanent --zone="public" --add-forward-port=port=2222:proto=tcp:toport=22:toaddr=192.168.100.3
+# firewall-cmd --reload
 ```
 
 
