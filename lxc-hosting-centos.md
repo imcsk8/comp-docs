@@ -105,6 +105,24 @@ cat <<EOF > /etc/sudoers.d/vps
 EOF
 ```
 
+Create a new bridged network managed by libvirt:
+
+```
+<network connections='1'>
+  <name>servers</name>
+  <uuid>1d16afee-866c-4013-95fb-d25c9ab23137</uuid>
+  <forward mode='route'/>
+  <bridge name='virbr1' stp='on' delay='0'/>
+  <mac address='52:54:00:7e:64:46'/>
+  <domain name='example.com'/>
+  <ip address='192.168.100.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.100.128' end='192.168.100.254'/>
+    </dhcp>
+  </ip>
+</network>
+```
+
 Create a CentOS Stream 9 OCI container image with systemd:
 
 ```bash
@@ -134,30 +152,30 @@ Create the container libvirt domain file, the following can be used as starting 
 
 ```bash
 <domain type='lxc'>
-  <name>vps-template</name>                                                                                                                       
-  <memory unit='KiB'>524288</memory>                                                                                                              
-  <currentMemory unit='KiB'>524288</currentMemory>                                                                                                
-  <vcpu placement='static'>1</vcpu>                                                                                                               
-  <resource>                                                                                                                                      
-    <partition>/machine</partition>                                                                                                               
-  </resource>                                                                                                                                     
-  <os>                                                                                                                                            
-    <type arch='x86_64'>exe</type>                                                                                                                
-    <init>/sbin/init</init>                                                                                                                       
-    <initenv name='container'>lxc-vps</initenv>                                                                                                   
-  </os>                                                                                                                                           
-  <idmap>                                                                                                                                         
-    <uid start='0' target='65537' count='1001180000'/>                                                                                            
-    <gid start='0' target='65535' count='1001180000'/>                                                                                            
-  </idmap>                                                                                                                                        
-  <features>                                                                                                                                      
-    <privnet/>                                                                                                                                    
-    <capabilities policy='default'>                                                                                                               
-      <mknod state='on'/>                                                                                                                         
-      <sys_admin state='on'/>                                                                                                                     
-    </capabilities>                                                                                                                               
-  </features>                                                                                                                                     
-  <clock offset='utc'/>                                                                                                                           
+  <name>vps-template</name>                   
+  <memory unit='KiB'>524288</memory>                   
+  <currentMemory unit='KiB'>524288</currentMemory>                   
+  <vcpu placement='static'>1</vcpu>                   
+  <resource>                   
+    <partition>/machine</partition>                   
+  </resource>                   
+  <os>                   
+    <type arch='x86_64'>exe</type>                   
+    <init>/sbin/init</init>                   
+    <initenv name='container'>lxc-vps</initenv>                   
+  </os>                   
+  <idmap>                   
+    <uid start='0' target='65537' count='1001180000'/>                   
+    <gid start='0' target='65535' count='1001180000'/>                   
+  </idmap>                   
+  <features>                   
+    <privnet/>                   
+    <capabilities policy='default'>
+      <mknod state='on'/>                   
+      <sys_admin state='on'/>                   
+    </capabilities>                   
+  </features>                   
+  <clock offset='utc'/>                   
   <on_poweroff>destroy</on_poweroff> 
   <on_reboot>restart</on_reboot>
   <on_crash>destroy</on_crash>
@@ -184,7 +202,9 @@ Create the container libvirt domain file, the following can be used as starting 
       <target dir='/home'/>
     </filesystem>
     <interface type='network'>
-      <source network='default' bridge='virbr0'/>
+      <source network='servers' bridge='virbr1'/>
+      <target dev='vnet3'/>
+      <guest dev='eth0'/>
     </interface>
     <console type='pty' tty='/dev/pts/5'>
       <source path='/dev/pts/5'/>
