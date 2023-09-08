@@ -476,3 +476,12 @@ Add this lines to `/etc/dnf/dnf.conf`
 max_parallel_downloads=20
 fastestmirror=True
 ```
+
+* HAProxy + SELinux
+
+
+Allow HAProxy to connect to any host:
+```
+# setsebool -P haproxy_connect_any 1
+
+```
