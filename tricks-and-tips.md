@@ -480,6 +480,15 @@ fastestmirror=True
 * HAProxy + SELinux
 
 
+* Open Firewalld ports
+
+To open multiple ports using `firewall-cmd`
+
+```
+# firewall-cmd --add-port=6000-7000/tcp --permanent
+# firewall-cmd --reload
+```
+
 Allow HAProxy to connect to any host:
 ```
 # setsebool -P haproxy_connect_any 1
