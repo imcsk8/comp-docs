@@ -46,6 +46,15 @@ Create certificate
 # certbot certonly --webroot -w /var/www/example -d example.com -d www.example.com -w /var/www/thing 
 ```
 
+Create certificate using DNS validation:
+
+```
+# cd /etc/letsencrypt
+# wget wget https://github.com/joohoi/acme-dns-certbot-joohoi/raw/master/acme-dns-auth.py
+# sed -i 's/python/python3/' acme-dns-auth.py
+# 
+```
+
 Renew Certificates
 ```
 # certbot renew --dry-run
