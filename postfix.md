@@ -1,4 +1,4 @@
-# Postfix + LDAP + Spamassassin + amavis + Clamav + Postgrey
+# Postfix + LDAP + Spamassassin + amavis + Clamav + Postgrey + letsencrypt
 
 Postfix SMTP with spam, graylist and virus check and LDAP aduthentication.
 
@@ -113,6 +113,33 @@ Configure clamav updates
 # restorecon -R -v /var/amavis/
 # setsebool -P nis_enabled 1
 
+```
+
+## Letsencrypt
+Create certificates using dns challenge:
+```
+# cd /etc/letsencrypt
+# wget https://github.com/joohoi/acme-dns-certbot-joohoi/raw/master/acme-dns-auth.py
+# chmod +x acme-dns-auth.py
+# certbot certonly --manual --manual-auth-hook /etc/letsencrypt/acme-dns-auth.py --preferred-challenges dns --debug-challenges -d smtp.example.com
+# cd /etc/postfix
+# mkdir tls
+# cd tls
+# ln -s /etc/letsencrypt/live/smtp.example.com/privkey.pem example.com.key.pem
+# ln -s /etc/letsencrypt/live/smtp.example.com/cert.pem example.com.cert.pem
+```
+
+Add configuration to `main.cf`
+
+```
+mtpd_use_tls = yes
+#smtpd_tls_auth_only = yes
+smtpd_tls_key_file = /etc/postfix/ssl/example.com.key.pem
+smtpd_tls_cert_file = /etc/postfix/ssl/example.com.cert.pem
+smtpd_tls_loglevel = 3
+smtpd_tls_received_header = yes
+smtpd_tls_session_cache_timeout = 3600s
+tls_random_source = dev:/dev/urandom
 ```
 
 ## References
