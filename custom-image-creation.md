@@ -10,3 +10,9 @@ That's why I switched to osbuild.
   composer-cli osbuild cockpit-composer weldr-client
 ```
 
+## Enable services
+
+```bash
+# systemctl enable osbuild-composer.socket
+# systemctl start osbuild-composer.socket
+```
