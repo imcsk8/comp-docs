@@ -19,10 +19,10 @@ That's why I switched to osbuild.
 
 ## Add repos
 
-Add epel
+### EPEL
 
 ```
-cat << EOF > epel.composer
+cat <<EOF > epel.ini
 check_gpg = true
 check_repogpg = true
 check_ssl = true
@@ -32,8 +32,37 @@ rhsm = false
 system = false
 type = "yum-baseurl"
 url = "https://mirrors.kernel.org/fedora-epel/9/Everything/x86_64/"
-EOF 
+EOF
 ```
+
+Add the repo to composer
+
+```bash
+# composer-cli sources add epel.ini
+```
+
+### ELREPO
+
+```
+cat <<EOF > elrepo.ini
+check_gpg = true
+check_repogpg = true
+check_ssl = true
+id = "ELRepo"
+name = "ELRepo"
+rhsm = false
+system = false
+type = "yum-baseurl"
+url = http://elrepo.org/linux/elrepo/el9/$basearch/
+EOF
+```
+
+Add the repo to composer
+
+```bash
+# composer-cli sources add elrepo.ini
+```
+
 
 # References
 
