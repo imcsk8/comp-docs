@@ -16,3 +16,25 @@ That's why I switched to osbuild.
 # systemctl enable osbuild-composer.socket
 # systemctl start osbuild-composer.socket
 ```
+
+## Add repos
+
+Add epel
+
+```
+cat << EOF > epel.composer
+check_gpg = true
+check_repogpg = true
+check_ssl = true
+id = "EPEL9"
+name = "EPEL9"
+rhsm = false
+system = false
+type = "yum-baseurl"
+url = "https://mirrors.kernel.org/fedora-epel/9/Everything/x86_64/"
+EOF 
+```
+
+# References
+
+* https://major.io/p/build-custom-centos-stream-cloud-image/
