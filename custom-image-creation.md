@@ -53,7 +53,7 @@ name = "ELRepo"
 rhsm = false
 system = false
 type = "yum-baseurl"
-url = http://elrepo.org/linux/elrepo/el9/$basearch/
+url = "http://elrepo.org/linux/elrepo/el9/$basearch/"
 EOF
 ```
 
