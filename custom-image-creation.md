@@ -41,7 +41,7 @@ Add the repo to composer
 # composer-cli sources add epel.ini
 ```
 
-### ELREPO
+### ELRepo
 
 ```
 cat <<EOF > elrepo.ini
@@ -61,6 +61,28 @@ Add the repo to composer
 
 ```bash
 # composer-cli sources add elrepo.ini
+```
+
+### Sotolito
+
+```
+cat <<EOF > sotolito.ini
+check_gpg = true
+check_repogpg = true
+check_ssl = true
+id = "ELRepo"
+name = "ELRepo"
+rhsm = false
+system = false
+type = "yum-baseurl"
+url = "http://repos.sotolitolabs.com/linux/sotolito/el9/$basearch/"
+EOF
+```
+
+Add the repo to composer
+
+```bash
+# composer-cli sources add sotolito.ini
 ```
 
 
