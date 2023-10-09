@@ -70,8 +70,8 @@ cat <<EOF > sotolito.ini
 check_gpg = true
 check_repogpg = true
 check_ssl = true
-id = "ELRepo"
-name = "ELRepo"
+id = "SotolitoLabs"
+name = "SotolitoLabs"
 rhsm = false
 system = false
 type = "yum-baseurl"
