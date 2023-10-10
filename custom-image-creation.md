@@ -1,4 +1,4 @@
-# Create CentOS Custo Image
+# Create CentOS Custom Image
 
 I wrote a shell script to create custom images but it was a hassle because I had to modify the script almos each time I created an image. 
 That's why I switched to osbuild.
