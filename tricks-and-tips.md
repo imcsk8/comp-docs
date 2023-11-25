@@ -498,6 +498,11 @@ To open multiple ports using `firewall-cmd`
 # firewall-cmd --reload
 ```
 
+* Show certificates in DER format
+```bash
+$ openssl x509 -inform der -in CERTIFICATE.der -text -noout
+```
+
 Allow HAProxy to connect to any host:
 ```
 # setsebool -P haproxy_connect_any 1
