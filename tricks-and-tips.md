@@ -244,11 +244,16 @@ After=local-fs.target
 [Container]
 Image=registry.access.redhat.com/ubi9-minimal:latest
 Exec=sleep 1000
+Environment=foo=bar
+EnvironmentFile=/tmp/env
+PublishPort=50-59
+Volume=/source:/dest
 
 [Install]
 # Start by default on boot
 WantedBy=multi-user.target default.target
 EOF
+$ systemctl --user daemon-reload
 ```
 
   
