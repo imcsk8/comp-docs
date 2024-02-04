@@ -253,6 +253,7 @@ Volume=/source:/dest
 # Start by default on boot
 WantedBy=multi-user.target default.target
 EOF
+$ export XDG_RUNTIME_DIR=/run/user/$(id -u) # Add this to .bash_profile
 $ systemctl --user daemon-reload
 ```
 
