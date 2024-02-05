@@ -223,7 +223,7 @@ command, to configure uid mapping in a user namespace.
 ```
 # podman play kube yamlfile.yaml
 ```
-* **Start containers using systemd units**
+* **Rootless containers using systemd units**
 
 **Create the user**
 ```
@@ -255,6 +255,21 @@ WantedBy=multi-user.target default.target
 EOF
 $ export XDG_RUNTIME_DIR=/run/user/$(id -u) # Add this to .bash_profile
 $ systemctl --user daemon-reload
+```
+
+**Rootless system wide**
+
+Add:
+```
+After=user@<UID>.service
+```
+To allow the container to run in the user's environment
+
+
+```
+# mkdir -p /etc/containers/systemd/users/1009
+# cp mysleep.container /etc/containers/systemd/users/1009/
+# systemctl daemon-reload
 ```
 
   
