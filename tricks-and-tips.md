@@ -9,7 +9,25 @@
 
 * **Check IMAP SSL connection**
 ```
-# openssl s_client -connect imap.gmail.com:993 
+$ openssl s_client -connect imap.gmail.com:993 
+```
+
+Check access to the imap server:
+
+**Login Method**
+```bash
+$ openssl s_client -connect imap.gmail.com:993
+A01 LOGIN example@gmail.com <password>
+```
+
+**Plain Method**
+```bash
+$ echo "\0example@gmail.com\0PASSWORD" | openssl base64
+XDBleGFtcGxlQGdtYWlsLmNvbVwwUEFTU1dPUkQK
+$ openssl s_client -connect imap.gmail.com:993
+A01 AUTHENTICATE PLAIN
++
+XDBleGFtcGxlQGdtYWlsLmNvbVwwUEFTU1dPUkQK
 ```
 
 * **Fedora Systemd /etc/passwd manual changes**
