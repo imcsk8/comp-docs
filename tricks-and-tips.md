@@ -576,3 +576,9 @@ Allow HAProxy to connect to any host:
 # setsebool -P haproxy_connect_any 1
 
 ```
+
+* Convert WEBM to MP4 using ffpmeg
+```bash
+ffmpeg -i original.webm -c:v libx264 -crf 18 -c:a flac converted.mp4
+
+```
