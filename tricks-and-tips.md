@@ -599,6 +599,7 @@ dn: cn=config
 changetype: modify
 replace: olcTLSCertificateFile
 olcTLSCertificateFile: /etc/openldap/certs/imcsk8.crt
+
 dn: cn=config
 changetype: modify
 replace: olcTLSCertificateKeyFile
