@@ -582,3 +582,31 @@ Allow HAProxy to connect to any host:
 ffmpeg -i original.webm -c:v libx264 -crf 18 -c:a flac converted.mp4
 
 ```
+
+* Configure TLS for openldap
+
+Generate self-signed certificate
+
+```bash
+# openssl req -new -x509 -nodes -out /etc/openldap/certs/server.crt -keyout /etc/openldap/certs/server.key -days 1460
+# chown -R ldap:ldap /etc/openldap/certs/server*
+```
+
+Create LDIF for adding the certificates
+```bash
+cat <<EOF > /etc/openldap/certs/certs.ldif
+dn: cn=config
+changetype: modify
+replace: olcTLSCertificateFile
+olcTLSCertificateFile: /etc/openldap/certs/imcsk8.crt
+dn: cn=config
+changetype: modify
+replace: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/openldap/certs/imcsk8.key
+EOF
+```
+```bash
+# ldapmodify -Y EXTERNAL  -H ldapi:/// -f /etc/openldap/certs/certs.ldif
+```
+
+
