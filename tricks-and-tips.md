@@ -70,7 +70,7 @@ Create certificate using DNS validation:
 # cd /etc/letsencrypt
 # wget wget https://github.com/joohoi/acme-dns-certbot-joohoi/raw/master/acme-dns-auth.py
 # sed -i 's/python/python3/' acme-dns-auth.py
-# 
+# certbot certonly --manual --manual-auth-hook /etc/letsencrypt/acme-dns-auth.py --preferred-challenges dns --debug-challenges  -d sotolitolabs.com.com.mx -d www.sotolitolabs.com.mx
 ```
 
 Renew Certificates
