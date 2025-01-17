@@ -610,4 +610,8 @@ EOF
 # ldapmodify -Y EXTERNAL  -H ldapi:/// -f /etc/openldap/certs/certs.ldif
 ```
 
+* **Reduce PDF file size**
 
+```bash
+$ convert -density 50x50 -quality 60 -compress jpeg input.pdf output-small.pdf
+```
