@@ -498,7 +498,7 @@ Go to `about:config` and set:
  
 Go to: `chrome://flags` and set: **Override software rendering list** to //Enabled//
 
-* Microsoft True Type fonts:
+* **Microsoft True Type fonts**
 
 From RPM Fustion install lpf-mscore-fonts`
 
@@ -526,13 +526,13 @@ $ lpf update
  $ echo "Current IPv4 address \4" >> /etc/issue
  ```
 
- * Create stereoscopic 3D image
+ * **Create stereoscopic 3D image**
  
  ```
   $ ffmpeg -y -i awesome_vide.mp4 -vf stereo3d=ar:arcd awesome_3d_video.mp4
  ```
 
- * Change a route metric
+ * **Change a route metric**
  The metric in a route is the cost of following it, the lowest the metric is the 
  preferred one.
  
@@ -540,13 +540,13 @@ $ lpf update
  # ip route replace default via 192.168.1.1 metric 1
  ```
 
-* Show available versions of a package
+* **Show available versions of a package**
  
  ```
  $ dnf --showduplicates list php
  ```
 
-* Increase dnf efficiency
+* **Increase dnf efficiency**
 
 Add this lines to `/etc/dnf/dnf.conf`
 ```
@@ -554,7 +554,7 @@ max_parallel_downloads=20
 fastestmirror=True
 ```
 
-* HAProxy + SELinux
+* **HAProxy + SELinux**
 
 
 * Open Firewalld ports
@@ -577,13 +577,13 @@ Allow HAProxy to connect to any host:
 
 ```
 
-* Convert WEBM to MP4 using ffpmeg
+* **Convert WEBM to MP4 using ffpmeg**
 ```bash
 ffmpeg -i original.webm -c:v libx264 -crf 18 -c:a flac converted.mp4
 
 ```
 
-* Configure TLS for openldap
+* **Configure TLS for OpenLDAP**
 
 Generate self-signed certificate
 
