@@ -615,3 +615,20 @@ EOF
 ```bash
 $ convert -density 50x50 -quality 60 -compress jpeg input.pdf output-small.pdf
 ```
+
+* **Postfix whitelist RBL**
+
+```bash
+# echo "tiktok.com" >> /etc/postfix/rbl_whitelist
+# postmap /etc/postfix/rbl_whitelist
+```
+
+Add `check_client_access hash:/etc/postfix/rbl_override,` to `main.cf`
+
+```
+smtpd_client_restrictions =
+    **check_client_access hash:/etc/postfix/rbl_override,**
+    reject_rbl_client blackholes.wirehub.net,
+    reject_rbl_client bl.spamcop.net,
+```
+
