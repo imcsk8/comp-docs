@@ -632,3 +632,8 @@ smtpd_client_restrictions =
     reject_rbl_client bl.spamcop.net,
 ```
 
+Restart postfix
+
+```bash
+# systemctl restart postfix
+```
