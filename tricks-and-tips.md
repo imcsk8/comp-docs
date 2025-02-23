@@ -97,6 +97,18 @@ This is useful to avoid confusion with the web browser cache
 echo | openssl s_client -showcerts -servername seispistos.com -connect seispistos.com:443 2>/dev/null | openssl x509 -inform pem -noout -text
 ```
 
+
+
+
+* **Change certificate challenge to DNS**
+
+```bash
+# certbot-3 reconfigure --cert-name aumenta.com.mx --manual --preferred-challenges dns
+```
+Follow the instructions to configure the domain zone.
+
+ 
+
 * **HAProxy with letstencrypt certificates**
 
 HAProxy needs the the private key and the certificates in a bundle:
