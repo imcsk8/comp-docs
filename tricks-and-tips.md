@@ -302,6 +302,11 @@ To allow the container to run in the user's environment
 # systemctl daemon-reload
 ```
 
+**Restart the user quadlet from root**
+
+```bash
+# systemctl --machine registry@.host --user restart registry
+```
   
 
 * **List image registry from the command line**
