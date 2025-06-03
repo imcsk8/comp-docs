@@ -654,3 +654,9 @@ Restart postfix
 ```bash
 # systemctl restart postfix
 ```
+
+* **Encrypt file with password**
+
+```bash
+~$ gpg -c my_secret_file.txt
+```
