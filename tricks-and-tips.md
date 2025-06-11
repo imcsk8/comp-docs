@@ -660,3 +660,17 @@ Restart postfix
 ```bash
 ~$ gpg -c my_secret_file.txt
 ```
+
+* **Disable auto suspend in Fedora**
+
+```bash
+~# mkdir /etc/systemd/sleep.conf.d
+~# cat << EOF > /etc/systemd/sleep.conf.d/suspend-off.conf
+> AllowSuspend=no
+AllowHibernation=no
+AllowSuspendThenHibernate=no
+AllowHybridSleep=no
+EOF
+# If using gnome
+~# sudo -u gdm dbus-run-session gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout '0'
+```
