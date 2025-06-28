@@ -674,3 +674,9 @@ EOF
 # If using gnome
 ~# sudo -u gdm dbus-run-session gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout '0'
 ```
+
+* **Mount luks partition**
+
+```bash
+# cryptsetup open /dev/nvme1n1p6 fedora --type luks
+```
