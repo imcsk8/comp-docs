@@ -689,3 +689,9 @@ EOF
 ```
   
 * https://trac.ffmpeg.org/wiki/How%20to%20speed%20up%20/%20slow%20down%20a%20video
+
+* **Podman with kata containers**
+
+```bash
+~$ podman --runtime=krun run --rm -ti fedora:43 /bin/bash
+```
