@@ -680,3 +680,12 @@ EOF
 ```bash
 # cryptsetup open /dev/nvme1n1p6 fedora --type luks
 ```
+
+* **Increase video speed with ffmpeg**
+
+```bash
+~$ ffmpeg -i demo.mp4 -map 0:v -c:v copy -bsf:v h264_mp4toannexb demo_raw.h264
+~$ ffmpeg -fflags +genpts -r 30 -i demo_raw.h264 -c:v copy demo_fast.mp4
+```
+  
+* https://trac.ffmpeg.org/wiki/How%20to%20speed%20up%20/%20slow%20down%20a%20video
