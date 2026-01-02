@@ -695,3 +695,24 @@ EOF
 ```bash
 ~$ podman --runtime=krun run --rm -ti fedora:43 /bin/bash
 ```
+
+* **Run rootless forgejo runner**
+
+In /etc/systemd/system/forgejo-runner.service:
+
+```
+...
+# This user and working directory must already exist
+User=forgejo
+Group=forgejo
+WorkingDirectory=/home/forgejo
+...
+```
+
+* **Enable rootless podman for forgejo runner**
+
+In forgejo-runner config.yaml:
+
+```
+docker_host: "unix:///run/user/1001/podman/podman.sock"
+```
